@@ -395,8 +395,11 @@
            05 LINEA-EST-COL-TOT        PIC 9(4) VALUE 0.
 
       * COMUNES
-       01 LINEA-DIVISORIA.
+       01 LINEA-DIVISORIA-PUNTEADA.
          03 FILLER PIC X(80) VALUE ALL "-".
+
+       01 LINEA-DIVISORIA-CONTINUA.
+         03 FILLER PIC X(80) VALUE ALL "_".
 
        01 LINEA-EN-BLANCO.
          03 FILLER PIC X(80) VALUE ALL SPACES.
@@ -425,7 +428,7 @@
            PERFORM ESTADISTICAS-X-EMPRESA.
 
            PERFORM FIN.
-           
+
        INICIO.
            PERFORM INICIALIZACION-VARIABLES.
            PERFORM ABRIR-ARCHIVOS.
@@ -677,7 +680,7 @@
 
        IMPRIMIR-ENCABEZADO-POR-FECHA.
           DISPLAY ENCABE-CONSULTOR-POR-FECHA.
-          DISPLAY LINEA-DIVISORIA.
+          DISPLAY LINEA-DIVISORIA-PUNTEADA.
 
        CARGAR-TABLA-CATEGORIAS.
            READ ARCH-CATEGORIAS
@@ -819,6 +822,25 @@
             DISPLAY 'NO PUDO CREARSE ARCHIVO MAE-TIMES ' FS-TIMES
             PERFORM FIN.
 
+       LIMPIAR-ESTADISTICAS.
+      *  limpio los valores en los meses
+         SET LINEA-EST-COL-ENE(WS-I) TO 0.
+         SET LINEA-EST-COL-FEB(WS-I) TO 0.
+         SET LINEA-EST-COL-MAR(WS-I) TO 0.
+         SET LINEA-EST-COL-ABR(WS-I) TO 0.
+         SET LINEA-EST-COL-MAY(WS-I) TO 0.
+         SET LINEA-EST-COL-JUN(WS-I) TO 0.
+         SET LINEA-EST-COL-JUL(WS-I) TO 0.
+         SET LINEA-EST-COL-AGO(WS-I) TO 0.
+         SET LINEA-EST-COL-SEP(WS-I) TO 0.
+         SET LINEA-EST-COL-OCT(WS-I) TO 0.
+         SET LINEA-EST-COL-NOV(WS-I) TO 0.
+         SET LINEA-EST-COL-DIC(WS-I) TO 0.
+      *  limpio los valores de los totales
+         SET LINEA-EST-COL-TOT(WS-I) TO 0.
+
+         ADD 1 TO WS-I.
+
        LEER-TIMES.
          READ ARCH-TIMES AT END MOVE '10' TO FS-TIMES.
 
@@ -937,15 +959,11 @@
            COMPUTE LINEA-EST-COL-TOT(WS-OFFSET-TOT-MES)
              = LINEA-EST-COL-TOT(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS.
 
-
        CALCULAR-EST-X-EMPRESA.
-         PERFORM LEER-TIMES
-
+         PERFORM LEER-TIMES.
       *  identifico el año a cargar
          MOVE REG-TIMES-FECHA (5:4) TO WS-ANIO-AAAA.
-
          PERFORM VERIFICAR-ANIO-EST.
-
       *  si el año esta dentro del rango que tengo que mostrar
       *  (los últimos 5), calculo la cantidad
          IF WS-ANIO-TEMP-OK
@@ -955,10 +973,19 @@
            PERFORM CARGAR-DATOS-EN-MATRIZ-EST.
 
        CARGAR-EST-POR-EMPRESA.
-         MOVE TAB-EMP(IND-TAB-EMP) TO REG-TAB-EMP-TEMP
+         SET WS-I TO 1.
+         PERFORM LIMPIAR-ESTADISTICAS UNTIL WS-I = 7.
+
          PERFORM ABRIR-TIMES-LECTURA.
          PERFORM CALCULAR-EST-X-EMPRESA UNTIL TIM-EOF.
          ADD 1 TO IND-TAB-EMP.
+
+      *  cargo el nombre de la empresa
+         MOVE TAB-EMP-RAZON(IND-TAB-EMP) TO LINEA-EST-COL-EMPRESA(1).
+
+         MOVE 1 TO I.
+         PERFORM MOSTRAR-ESTADISTICAS UNTIL I = 7.
+         DISPLAY ' '.
 
        MOSTRAR-ESTADISTICAS.
          DISPLAY LINEA-LISTADO-EST(I).
@@ -970,6 +997,8 @@
          DISPLAY ENCABE-LINEA2-EST.
          DISPLAY LINEA-EN-BLANCO.
          DISPLAY ENCABE-LISTADO-EST.
+         DISPLAY LINEA-DIVISORIA-CONTINUA.
+         DISPLAY ' '.
 
          PERFORM ORDERNAR-EMPRESAS-X-RAZ-SOC.
          MOVE 1 TO I.
@@ -979,11 +1008,6 @@
          MOVE 1 TO IND-TAB-EMP.
          PERFORM CARGAR-EST-POR-EMPRESA
                  UNTIL IND-TAB-EMP IS EQUAL WS-CANT-EMP.
-
-         MOVE 1 TO I.
-         PERFORM MOSTRAR-ESTADISTICAS UNTIL I = 7.
-
-           
 
        FIN.
            PERFORM CERRAR-ARCHIVOS.
