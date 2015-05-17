@@ -31,6 +31,7 @@
                    FILE STATUS IS FS-CAT.
       
        DATA DIVISION.
+
        FILE SECTION.
        FD ARCH-NOV1 LABEL RECORD IS STANDARD
              VALUE OF FILE-ID IS 'NOV1.DAT'
@@ -100,9 +101,9 @@
            03 REG-EMP-TAB.
               05 REG-EMP-COD           PIC 9(3).
               05 REG-EMP-RAZON         PIC X(25).
-           03 REG-EMP-DIRECCION     PIC X(20).
-           03 REG-EMP-TEL           PIC X(20).
-           03 REG-EMP-CIUT          PIC 9(11).
+           03 REG-EMP-DIRECCION      PIC X(20).
+           03 REG-EMP-TEL            PIC X(20).
+           03 REG-EMP-CUIT          PIC 9(11).
 
        FD ARCH-CATEGORIAS LABEL RECORD IS STANDARD
              VALUE OF FILE-ID IS 'CATEGORIAS.DAT'
@@ -114,6 +115,13 @@
            03 REG-CAT-TARIFA        PIC 9(5)V99.
            
        WORKING-STORAGE SECTION.
+      ******************************************************************
+      * TABLAS
+      ******************************************************************
+
+       01 REG-TAB-EMP-TEMP.
+         05 TAB-EMP-COD-TEMP           PIC 9(3).
+         05 TAB-EMP-RAZON-TEMP         PIC X(25).
 
        01 TABLA-EMPRESAS.
            03 TAB-EMP OCCURS 999 TIMES INDEXED BY IND-TAB-EMP.
@@ -136,7 +144,12 @@
            03 REG-MEN-EMPRESA           PIC 9(3).
            03 REG-MEN-TAREA             PIC X(4).
            03 REG-MEN-HORAS             PIC 9(2)v99.
-            
+
+
+
+      ******************************************************************
+      * REGISTROS DE ARCHIVOS
+      ******************************************************************
        77 FS-NOV1                    PIC XX.
            88 NOV1-OK                VALUE '00'.
            88 NOV1-EOF               VALUE '10'.
@@ -150,6 +163,7 @@
        77 FS-TIMES                   PIC XX.
            88 TIM-OK                 VALUE '00'.
            88 TIM-EOF                VALUE '10'.
+           88 TIM-ABIERTO            VALUE '41'.
 
        77 FS-EMP                     PIC XX.
            88 EMP-OK                 VALUE '00'.
@@ -163,6 +177,10 @@
            88 CONS-OK                 VALUE '00'.
            88 CONS-EOF                VALUE '10'.
 
+
+      ******************************************************************
+      * FLAGS, ACUMULADORES, VARIABLES, ETC...
+      ******************************************************************
        01 WS-ACUM-IMP-CONS-FECHA     PIC 9(8)v99.
        01 WS-ACUM-IMP-CONS           PIC 9(8)v99.
        01 WS-ACUM-HOR-CONS           PIC 9(8)v99.
@@ -171,6 +189,8 @@
        01 WS-ACUM-NRO-HOJAS          PIC 9(3).
        01 WS-ACUM-LINEAS             PIC 9(4).
        01 WS-I                       PIC 9(4).
+       01 WS-J                       PIC 9(4).
+       01 WS-CANT-EMP                PIC 9(4).
 
        01 WS-CORTE-CONS-NUM          PIC X(5).
        01 WS-CORTE-CONS-FECHA        PIC 9(8).
@@ -198,7 +218,7 @@
        01 FECHA.
           03 FECHA-DD     PIC 99.
           03 FECHA-MM     PIC 99.
-          03 FECHA-AA     PIC 99.    
+          03 FECHA-AAAA   PIC 9999.
 
        01 WS-FECHA-TAB               PIC X(10).
 
@@ -209,22 +229,38 @@
            03 FILLER                PIC X.
            03 WS-DIA-TAB            PIC 99.
 
-       01 ENCABE-LINEA1.
-           03 FILLER                   PIC X(8) VALUE ' Fecha: '.
-           03 ENCABE-LINEA1-FECHA-DD   PIC XX.
-           03 FILLER                   PIC X VALUE '/'.
-           03 ENCABE-LINEA1-FECHA-MM   PIC XX.
-           03 FILLER                   PIC X VALUE '/'.
-           03 ENCABE-LINEA1-FECHA-AA   PIC XX.
-           03 FILLER                   PIC X(53) VALUE SPACES.
-           03 FILLER                   PIC X(6) VALUE 'HOJA :'.
-           03 ENCABE-LINEA1-NRO-HOJA   PIC 9999 VALUE ZERO.
+       01 WS-ANIO-ACTUAL            PIC 9999.
 
+       01 WS-ANIO-AAAA              PIC 9999.
+       01 WS-MES-MM                 PIC 99.
+       01 WS-EMPRESA                PIC X(88).
+       01 WS-ANIO-TEMP              PIC X(2).
+         88 WS-ANIO-TEMP-OK         VALUE 'OK'.
+         88 WS-ANIO-TEMP-MAL        VALUE 'NO'.
+
+       01 WS-OFFSET-MES             PIC 9(2).
+         88 WS-OFFSET-MES-MAL       VALUE 99.
+
+       01 WS-OFFSET-ANIO-EST        PIC 99.
+         88 WS-OFFSET-ANIO-EST-MAL  VALUE 99.
+
+      * es el offset a la ultima fila del reporte de estadisticas
+      * que contiene el total del año correspondiente a la fila
+       01 WS-OFFSET-TOT-MES         PIC 9 VALUE 6.
+
+      * es el offset a la última columna del reporte de estadisticas,
+      * que contiene el total de los ultimos 5 años de cada mes
+       01 WS-OFFSET-TOT-ANIO        PIC 999 VALUE 79.
+
+      ******************************************************************
+      * ENCABEZADOS REPORTES
+      ******************************************************************
+
+      * REPORTE HORAS APLICADAS POR CONSULTOR
        01 ENCABE-LINEA2.
            03 FILLER       PIC X(28) VALUE SPACES.
            03 FILLER       PIC X(30) VALUE 'Listado de horas aplicadas'.
 
-       
        01 ENCABE-CONSULTOR-LINEA1.
            03 FILLER       PIC X(11) VALUE 'Consultor: '.
            03 ENCABE-CONSULTOR-LINEA1-NUMERO   PIC X(5).
@@ -249,11 +285,8 @@
            03 FILLER       PIC X(11) VALUE "   Horas   ".
            03 FILLER       PIC X(13) VALUE "     Importe".
 
-       01 LINEA-DIVISORIA.
-           03 FILLER PIC X(80) VALUE ALL "-".
-
        01 LINEA-DATOS-POR-TRABAJO.
-           03 FILLER              PIC XX VALUE SPACES.  
+           03 FILLER              PIC XX VALUE SPACES.
            03 LIN-DIA             PIC XX.
            03 FILLER              PIC X VALUE '/'.
            03 LIN-MES             PIC XX.
@@ -267,7 +300,6 @@
            03 LIN-HORAS           PIC 9(2)V99.
            03 FILLER              PIC X(10) VALUE ALL SPACES.
            03 LIN-IMPORTE         PIC 9(3)V99.
-          
 
        01 LINEA-DATOS-POR-FECHA.
            03 FILLER              PIC X(17) VALUE "Totales por fecha".
@@ -288,32 +320,163 @@
            03 FILLER           PIC X(45) VALUE ALL SPACES.
            03 LIN-TOTAL-GENERAL-CONS      PIC 9(8)V99 VALUE 00000000,00.
 
-       
+      *  REPORTE HORAS APLICADAS EMPRESA EN LOS ULTIMOS 5 AÑOS
+       01 ENCABE-LINEA2-EST.
+           03 FILLER       PIC X(10) VALUE SPACES.
+           03 FILLER       PIC X(20) VALUE 'Listado Estadistico'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(19) VALUE 'de horas aplicadas'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(14) VALUE 'por año y mes'.
+
+       01 ENCABE-LISTADO-EST.
+           03 FILLER       PIC X(4) VALUE SPACES.
+           03 FILLER       PIC X(7) VALUE 'Empresa'.
+           03 FILLER       PIC X(4) VALUE SPACES.
+           03 FILLER       PIC X(4) VALUE 'Año'.
+           03 FILLER       PIC X(4) VALUE SPACES.
+           03 FILLER       PIC X(3) VALUE 'Ene'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(3) VALUE 'Feb'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(3) VALUE 'Mar'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(3) VALUE 'Abr'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(3) VALUE 'May'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(3) VALUE 'Jun'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(3) VALUE 'Jul'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(3) VALUE 'Ago'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(3) VALUE 'Sep'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(3) VALUE 'Oct'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(3) VALUE 'Nov'.
+           03 FILLER       PIC X(1) VALUE SPACE.
+           03 FILLER       PIC X(3) VALUE 'Dic'.
+           03 FILLER       PIC X(4) VALUE SPACES.
+           03 FILLER       PIC X(5) VALUE 'Total'.
+
+       01 TABLA-DETALLE-ESTA.
+         03 LINEA-LISTADO-EST OCCURS 6 TIMES INDEXED BY I.
+           05 LINEA-EST-COL-EMPRESA    PIC X(13) VALUE SPACES.
+           05 FILLER               PIC X(2) VALUE SPACES.
+           05 LINEA-EST-COL-ANIO       PIC X(4) VALUE SPACES.
+           05 FILLER               PIC X(3) VALUE SPACES.
+           05 LINEA-EST-COL-MESES.
+               07 LINEA-EST-COL-ENE        PIC 9(3) VALUE 0.
+               07 FILLER               PIC X(1) VALUE SPACE.
+               07 LINEA-EST-COL-FEB        PIC 9(3) VALUE 0.
+               07 FILLER               PIC X(1) VALUE SPACE.
+               07 LINEA-EST-COL-MAR        PIC 9(3) VALUE 0.
+               07 FILLER               PIC X(1) VALUE SPACE.
+               07 LINEA-EST-COL-ABR        PIC 9(3) VALUE 0.
+               07 FILLER               PIC X(1) VALUE SPACE.
+               07 LINEA-EST-COL-MAY        PIC 9(3) VALUE 0.
+               07 FILLER               PIC X(1) VALUE SPACE.
+               07 LINEA-EST-COL-JUN        PIC 9(3) VALUE 0.
+               07 FILLER               PIC X(1) VALUE SPACE.
+               07 LINEA-EST-COL-JUL        PIC 9(3) VALUE 0.
+               07 FILLER               PIC X(1) VALUE SPACE.
+               07 LINEA-EST-COL-AGO        PIC 9(3) VALUE 0.
+               07 FILLER               PIC X(1) VALUE SPACE.
+               07 LINEA-EST-COL-SEP        PIC 9(3) VALUE 0.
+               07 FILLER               PIC X(1) VALUE SPACE.
+               07 LINEA-EST-COL-OCT        PIC 9(3) VALUE 0.
+               07 FILLER               PIC X(1) VALUE SPACE.
+               07 LINEA-EST-COL-NOV        PIC 9(3) VALUE 0.
+               07 FILLER               PIC X(1) VALUE SPACE.
+               07 LINEA-EST-COL-DIC        PIC 9(3) VALUE 0.
+           05 FILLER               PIC X(5) VALUE SPACES.
+           05 LINEA-EST-COL-TOT        PIC 9(4) VALUE 0.
+
+      * COMUNES
+       01 LINEA-DIVISORIA.
+         03 FILLER PIC X(80) VALUE ALL "-".
+
+       01 LINEA-EN-BLANCO.
+         03 FILLER PIC X(80) VALUE ALL SPACES.
+
+       01 ENCABE-LINEA1.
+           03 FILLER                   PIC X(8) VALUE ' Fecha: '.
+           03 ENCABE-LINEA1-FECHA-DD   PIC XX.
+           03 FILLER                   PIC X VALUE '/'.
+           03 ENCABE-LINEA1-FECHA-MM   PIC XX.
+           03 FILLER                   PIC X VALUE '/'.
+           03 ENCABE-LINEA1-FECHA-AAAA PIC XXXX.
+           03 FILLER                   PIC X(51) VALUE SPACES.
+           03 FILLER                   PIC X(7) VALUE 'HOJA : '.
+           03 ENCABE-LINEA1-NRO-HOJA   PIC 999 VALUE ZERO.
+
        PROCEDURE DIVISION.
 
        TP1.
            PERFORM INICIO.
-           PERFORM LEER-ARCHIVOS.
+           PERFORM LEER-NOVEDADES.
+
+      *    actualizo el maestro de horas (archivo TIMES)
            PERFORM CARGAR-MAESTRO
-               UNTIL NOV1-EOF
-               AND NOV2-EOF
-               AND NOV3-EOF
-               OR ACUM EQUAL 30.
+               UNTIL NOV1-EOF AND NOV2-EOF AND NOV3-EOF.
+
+           PERFORM ESTADISTICAS-X-EMPRESA.
+
            PERFORM FIN.
+           
+       INICIO.
+           PERFORM INICIALIZACION-VARIABLES.
+           PERFORM ABRIR-ARCHIVOS.
+           PERFORM CARGAR-TABLA-CATEGORIAS.
+           PERFORM CARGAR-TABLA-EMPRESAS.
+
+       LEER-NOVEDADES.
+           PERFORM LEER-NOV1.
+           PERFORM LEER-NOV2.
+           PERFORM LEER-NOV3.
+
+       LEER-NOV1.
+           READ ARCH-NOV1 AT END MOVE '10' TO FS-NOV1.
+
+           IF NOV1-OK
+              NEXT SENTENCE
+           ELSE
+              MOVE "99999" TO REG-NOV1-NUMERO
+              MOVE "99999999" TO REG-NOV1-FECHA.
+
+       LEER-NOV2.
+           READ ARCH-NOV2 AT END MOVE '10' TO FS-NOV2.
+
+           IF NOV2-OK
+              NEXT SENTENCE
+           ELSE
+              MOVE "99999" TO REG-NOV2-NUMERO
+              MOVE "99999999" TO REG-NOV2-FECHA.
+
+       LEER-NOV3.
+           READ ARCH-NOV3 AT END MOVE '10' TO FS-NOV3.
+
+           IF NOV3-OK
+              NEXT SENTENCE
+           ELSE
+              MOVE "99999" TO REG-NOV3-NUMERO
+              MOVE "99999999" TO REG-NOV3-FECHA.
 
        CARGAR-MAESTRO.
            PERFORM DETERMINAR-MENOR.
            PERFORM BUSCAR-DATOS-CONSULTOR.
-           
+
            PERFORM IMPRIMIR-ENCABEZADO-GENERAL.
            PERFORM CARGA-E-IMP-ENCABE-CONS.
-           
+
            PERFORM ASIGNO-CORTE-CONS-NUM.
-           
+
+      *    calculo las horas que fueron aplicadas  por cada consultor.
            PERFORM PROCESAR-CONSULTOR
                UNTIL (NOV1-EOF AND NOV2-EOF AND NOV3-EOF)
-                OR REG-MEN-NUMERO NOT EQUAL WS-CORTE-CONS-NUM
-                OR ACUM EQUAL 30.
+                OR REG-MEN-NUMERO NOT EQUAL WS-CORTE-CONS-NUM.
 
            PERFORM CARGAR-IMP-DATOS-X-CONS.
 
@@ -368,11 +531,10 @@
            PERFORM IMPRIMIR-ENCABEZADO-POR-FECHA.
 
            PERFORM ASIGNO-CORTE-CONS-FECHA.
-
+           
            PERFORM PROCESAR-HORAS-POR-FECHA
                UNTIL (NOV1-EOF AND NOV2-EOF AND NOV3-EOF)
                 OR REG-MEN-FECHA NOT EQUAL WS-CORTE-CONS-FECHA
-                OR ACUM EQUAL 30.
 
            PERFORM CARGAR-IMPRIMIR-TOTALES-X-FECHA.
 
@@ -380,7 +542,7 @@
 
            PERFORM RESET-DATOS-POR-FECHA.
 
-        ACUM-DATOS-X-CONS.
+       ACUM-DATOS-X-CONS.
            ADD WS-ACUM-IMP-X-FECHA TO WS-ACUM-IMP-X-CONS.
            ADD WS-ACUM-HORAS-X-FECHA TO WS-ACUM-HORAS-X-CONS.
 
@@ -397,19 +559,18 @@
            PERFORM BUSCAR-RAZON-SOCIAL.
            PERFORM CARGAR-E-IMPRIMIR-LINEA-FECHA.
            PERFORM ACUM-DATOS-POR-FECHA.
-
            PERFORM CARGAR-TIMES-MAESTRO.
 
            PERFORM ARIEL-ACUM-HORAS-POR-ANIO-MES.
-           
+
            ADD 1 TO ACUM.
            PERFORM LEER-MENOR.
-
+           
        ARIEL-ACUM-HORAS-POR-ANIO-MES.
+         
 
        CARGAR-TIMES-MAESTRO.
            MOVE REG-MEN TO REG-TIMES.
-
            WRITE REG-TIMES.
 
        BUSCAR-RAZON-SOCIAL.
@@ -422,7 +583,6 @@
 
        OBTENER-RAZON-SOCIAL.
            MOVE TAB-EMP-RAZON(IND-TAB-EMP) TO WS-RAZON-SOCIAL.
-
 
        CALCULAR-IMPORTE-UN-TRABAJO.
            COMPUTE WS-IMPORTE-UN-TRABAJO
@@ -460,13 +620,17 @@
 
        LEER-MENOR.
            IF REG-MEN-NUMERO IS EQUAL REG-NOV1-NUMERO
+               AND NOT NOV1-EOF THEN
                 PERFORM LEER-NOV1
                 MOVE REG-NOV1 TO REG-MEN.
+
            IF REG-MEN-NUMERO IS EQUAL REG-NOV2-NUMERO
+               AND NOT NOV2-EOF THEN
                 PERFORM LEER-NOV2
                 MOVE REG-NOV2 TO REG-MEN.
 
            IF REG-MEN-NUMERO IS EQUAL REG-NOV3-NUMERO
+               AND NOT NOV3-EOF THEN
                 PERFORM LEER-NOV3
                 MOVE REG-NOV3 TO REG-MEN.
 
@@ -478,7 +642,8 @@
            PERFORM BUSCAR-TARIFA-CONSULTOR.
 
        LEER-ARCH-CONSULTORES.
-           READ ARCH-CONSULTORES.
+           READ ARCH-CONSULTORES
+               AT END MOVE '10' TO FS-CONS.
 
        IMPRIMIR-ENCABEZADO-GENERAL.
            PERFORM CARGAR-E-IMPRIMIR-PRIMERA-LINEA.
@@ -487,13 +652,13 @@
            ADD 1 TO WS-ACUM-NRO-HOJAS.
 
        CARGAR-E-IMPRIMIR-PRIMERA-LINEA.
-           MOVE FECHA-AA TO ENCABE-LINEA1-FECHA-AA.
+           MOVE FECHA-AAAA TO ENCABE-LINEA1-FECHA-AAAA.
            MOVE FECHA-MM TO ENCABE-LINEA1-FECHA-MM.
            MOVE FECHA-DD TO ENCABE-LINEA1-FECHA-DD.
            MOVE WS-ACUM-NRO-HOJAS TO ENCABE-LINEA1-NRO-HOJA.
 
            DISPLAY ENCABE-LINEA1.
-           DISPLAY ENCABE-LINEA2.           
+           DISPLAY ENCABE-LINEA2.
 
            DISPLAY " ".
 
@@ -514,43 +679,61 @@
           DISPLAY ENCABE-CONSULTOR-POR-FECHA.
           DISPLAY LINEA-DIVISORIA.
 
-       INICIO.
-           PERFORM INICIALIZACION-VARIABLES.
-           PERFORM ABRIR-ARCHIVOS.
-           PERFORM CARGAR-TABLA-CATEGORIAS.
-           PERFORM CARGAR-TABLA-EMPRESAS.
-
        CARGAR-TABLA-CATEGORIAS.
-           READ ARCH-CATEGORIAS.
+           READ ARCH-CATEGORIAS
+               AT END MOVE '10' TO FS-CAT.
 
            MOVE 1 TO IND-TAB-CAT.
-           
-           PERFORM CARGA-UNA-CAT
+
+           PERFORM CARGA-CATEGORIA-EN-TABLA
                UNTIL CAT-EOF OR IND-TAB-CAT NOT LESS THAN 50.
 
-       CARGA-UNA-CAT.
+       CARGA-CATEGORIA-EN-TABLA.
            MOVE REG-CAT TO TAB-CAT(IND-TAB-CAT).
 
            ADD 1 TO IND-TAB-CAT.
 
-           READ ARCH-CATEGORIAS.
+           READ ARCH-CATEGORIAS
+               AT END MOVE '10' TO FS-CAT.
 
        CARGAR-TABLA-EMPRESAS.
-           READ ARCH-EMPRESAS.
+         READ ARCH-EMPRESAS
+           AT END MOVE '10' TO FS-EMP.
 
-           MOVE 1 TO IND-TAB-EMP.
-           
-           PERFORM CARGA-UNA-EMP
-               UNTIL EMP-EOF
-               OR IND-TAB-EMP NOT LESS THAN 999.
+         MOVE 1 TO IND-TAB-EMP.
 
-       CARGA-UNA-EMP.
+         PERFORM CARGAR-EMPRESA-EN-TABLA
+           UNTIL EMP-EOF
+           OR IND-TAB-EMP NOT LESS THAN 999.
+
+      *  guardo la cantidd de empresas
+         MOVE IND-TAB-EMP TO WS-CANT-EMP.
+
+       CARGAR-EMPRESA-EN-TABLA.
            MOVE REG-EMP-TAB TO TAB-EMP(IND-TAB-EMP).
            
            ADD 1 TO IND-TAB-EMP.
 
-           READ ARCH-EMPRESAS.
-       
+           READ ARCH-EMPRESAS AT END MOVE '10' TO FS-EMP.
+
+       ORD-EMP.
+
+       ORDERNAR-EMPRESAS-X-RAZ-SOC.
+          MOVE 1 TO WS-I.
+           PERFORM UNTIL WS-I > WS-CANT-EMP
+             MOVE WS-I TO WS-J
+             PERFORM UNTIL WS-J > WS-CANT-EMP
+               IF (TAB-EMP-RAZON(WS-I) > TAB-EMP-RAZON(WS-J))
+                 MOVE TAB-EMP(WS-I) TO REG-TAB-EMP-TEMP
+                 MOVE TAB-EMP(WS-J) TO TAB-EMP(WS-I)
+                 MOVE REG-TAB-EMP-TEMP TO TAB-EMP(WS-J)
+               END-IF
+               ADD 1 TO WS-J GIVING WS-J
+             END-PERFORM
+             ADD 1 TO WS-I GIVING WS-I
+           END-PERFORM.
+           MOVE 0 TO WS-I.
+
        INICIALIZACION-VARIABLES.
            MOVE 90 TO WS-ACUM-LINEAS.
            MOVE 1 TO WS-ACUM-NRO-HOJAS.
@@ -563,22 +746,23 @@
            ACCEPT FECHA FROM DATE.
 
        ABRIR-ARCHIVOS.
+
            OPEN INPUT ARCH-NOV1.
-           IF NOV1-OK
+           IF NOV1-OK THEN
               NEXT SENTENCE
            ELSE
               DISPLAY 'NO PUDO ABRIRSE ARCHIVO NOV1 ' FS-NOV1
               PERFORM FIN.
 
            OPEN INPUT ARCH-NOV2.
-           IF NOV2-OK
+           IF NOV2-OK THEN
               NEXT SENTENCE
            ELSE
               DISPLAY 'NO PUDO ABRIRSE ARCHIVO ARCH-NOV2 ' FS-NOV2
               PERFORM FIN.
 
            OPEN INPUT ARCH-NOV3.
-           IF NOV3-OK
+           IF NOV3-OK THEN
               NEXT SENTENCE
            ELSE
               DISPLAY 'NO PUDO ABRIRSE ARCHIVO ARCH-NOV3 ' FS-NOV3
@@ -598,7 +782,7 @@
               DISPLAY 'NO PUDO ABRIRSE ARCHIVO EMPRESAS ' FS-CAT
               PERFORM FIN.
 
-           OPEN INPUT ARCH-CONSULTORES.
+           OPEN INPUT ARCH-CONSULTORES
            IF CONS-OK
               NEXT SENTENCE
            ELSE
@@ -612,34 +796,194 @@
               DISPLAY 'NO PUDO CREARSE ARCHIVO MAE-TIMES ' FS-TIMES
               PERFORM FIN.
 
-       LEER-ARCHIVOS.
-           PERFORM LEER-NOV1.
-           PERFORM LEER-NOV2.
-           PERFORM LEER-NOV3.
+       CARGAR-ANIOS-EST.
+      *  obtengo el año actual
+         PERFORM OBTENER-ANIO-ACTUAL.
+      *  cargo el año que quiero mostrar
+         COMPUTE WS-ANIO-ACTUAL = WS-ANIO-ACTUAL - WS-I + 1.
+      *  cargo el año que quiero mostrar
+         MOVE WS-ANIO-ACTUAL TO LINEA-EST-COL-ANIO(I).
 
-       LEER-NOV1.
-           READ ARCH-NOV1.
-           IF NOV1-OK
-              NEXT SENTENCE
-           ELSE
-              MOVE "99999" TO REG-NOV1-NUMERO
-              MOVE "99999999" TO REG-NOV1-FECHA.
+      *  actualizo los indices
+         COMPUTE WS-I = WS-I - 1.
+         COMPUTE I = I + 1.
 
-       LEER-NOV2.
-           READ ARCH-NOV2.
-           IF NOV2-OK
-              NEXT SENTENCE
-           ELSE
-              MOVE "99999" TO REG-NOV2-NUMERO
-              MOVE "99999999" TO REG-NOV2-FECHA.
-              
-       LEER-NOV3.
-           READ ARCH-NOV3.
-           IF NOV3-OK
-              NEXT SENTENCE
-           ELSE
-              MOVE "99999" TO REG-NOV3-NUMERO
-              MOVE "99999999" TO REG-NOV3-FECHA.
+       ABRIR-TIMES-LECTURA.
+
+         CLOSE ARCH-TIMES
+
+         OPEN INPUT ARCH-TIMES.
+         IF TIM-OK
+            NEXT SENTENCE
+         ELSE
+            DISPLAY 'NO PUDO CREARSE ARCHIVO MAE-TIMES ' FS-TIMES
+            PERFORM FIN.
+
+       LEER-TIMES.
+         READ ARCH-TIMES AT END MOVE '10' TO FS-TIMES.
+
+         IF TIM-OK
+            NEXT SENTENCE
+         ELSE
+            MOVE "99999" TO REG-NOV1-NUMERO
+            MOVE "99999999" TO REG-NOV1-FECHA.
+
+       OBTENER-ANIO-ACTUAL.
+         MOVE FUNCTION CURRENT-DATE (1:4) TO WS-ANIO-ACTUAL.
+
+       VERIFICAR-ANIO-EST.
+         PERFORM OBTENER-ANIO-ACTUAL.
+         IF (WS-ANIO-AAAA = WS-ANIO-ACTUAL)
+           MOVE 'OK' TO WS-ANIO-TEMP
+           SET WS-OFFSET-ANIO-EST TO 5
+         ELSE IF (WS-ANIO-AAAA = WS-ANIO-ACTUAL - 1)
+           MOVE 'OK' TO WS-ANIO-TEMP
+           SET WS-OFFSET-ANIO-EST TO 4
+         ELSE IF (WS-ANIO-AAAA = WS-ANIO-ACTUAL - 2)
+           MOVE 'OK' TO WS-ANIO-TEMP
+           SET WS-OFFSET-ANIO-EST TO 3
+         ELSE IF (WS-ANIO-AAAA = WS-ANIO-ACTUAL - 3)
+           MOVE 'OK' TO WS-ANIO-TEMP
+           SET WS-OFFSET-ANIO-EST TO 2
+         ELSE IF (WS-ANIO-AAAA = WS-ANIO-ACTUAL - 4)
+           MOVE 'OK' TO WS-ANIO-TEMP
+           SET WS-OFFSET-ANIO-EST TO 1
+         ELSE
+           MOVE 'NO' TO WS-ANIO-TEMP
+           SET WS-OFFSET-ANIO-EST TO 99.
+
+       CARGAR-DATOS-EN-MATRIZ-EST.
+      *    recalculo el valor mensual
+      *    recalculo el valor mensual de los ultimos 5 años
+         IF (WS-MES-MM = '01')
+           COMPUTE LINEA-EST-COL-ENE(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-ENE(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-ENE(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-ENE(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+
+         ELSE IF WS-MES-MM = '02'
+           COMPUTE LINEA-EST-COL-FEB(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-FEB(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-FEB(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-FEB(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+
+         ELSE IF WS-MES-MM = '03'
+           COMPUTE LINEA-EST-COL-MAR(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-MAR(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-MAR(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-MAR(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+               
+         ELSE IF WS-MES-MM = '04'
+           COMPUTE LINEA-EST-COL-ABR(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-ABR(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-ABR(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-ABR(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+               
+         ELSE IF WS-MES-MM = '05'
+           COMPUTE LINEA-EST-COL-MAY(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-MAY(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-MAY(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-MAY(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+
+         ELSE IF WS-MES-MM = '06'
+           COMPUTE LINEA-EST-COL-JUN(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-JUN(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-JUN(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-JUN(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+
+         ELSE IF WS-MES-MM = '07'
+           COMPUTE LINEA-EST-COL-JUL(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-JUL(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-JUL(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-JUL(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+
+         ELSE IF WS-MES-MM = '08'
+           COMPUTE LINEA-EST-COL-AGO(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-AGO(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-AGO(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-AGO(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+               
+         ELSE IF WS-MES-MM = '09'
+           COMPUTE LINEA-EST-COL-SEP(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-SEP(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-SEP(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-SEP(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+               
+         ELSE IF WS-MES-MM = '10'
+           COMPUTE LINEA-EST-COL-OCT(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-OCT(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-OCT(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-OCT(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+               
+         ELSE IF WS-MES-MM = '11'
+           COMPUTE LINEA-EST-COL-NOV(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-NOV(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-NOV(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-NOV(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+               
+         ELSE IF WS-MES-MM = '12'
+           COMPUTE LINEA-EST-COL-DIC(WS-OFFSET-ANIO-EST)
+               = LINEA-EST-COL-DIC(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+           COMPUTE LINEA-EST-COL-DIC(WS-OFFSET-TOT-MES)
+               = LINEA-EST-COL-DIC(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+
+         ELSE SET WS-OFFSET-MES TO 99.
+
+      *  recalculo el total anual
+         IF NOT WS-OFFSET-MES-MAL
+           COMPUTE LINEA-EST-COL-TOT(WS-OFFSET-ANIO-EST)
+             = LINEA-EST-COL-TOT(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS.
+      *  recalculo el total global
+           COMPUTE LINEA-EST-COL-TOT(WS-OFFSET-TOT-MES)
+             = LINEA-EST-COL-TOT(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS.
+
+
+       CALCULAR-EST-X-EMPRESA.
+         PERFORM LEER-TIMES
+
+      *  identifico el año a cargar
+         MOVE REG-TIMES-FECHA (5:4) TO WS-ANIO-AAAA.
+
+         PERFORM VERIFICAR-ANIO-EST.
+
+      *  si el año esta dentro del rango que tengo que mostrar
+      *  (los últimos 5), calculo la cantidad
+         IF WS-ANIO-TEMP-OK
+      *    identifico el mes a cargar
+           MOVE REG-TIMES-FECHA (3:2) TO WS-MES-MM
+      *    lo cargo en la matriz
+           PERFORM CARGAR-DATOS-EN-MATRIZ-EST.
+
+       CARGAR-EST-POR-EMPRESA.
+         MOVE TAB-EMP(IND-TAB-EMP) TO REG-TAB-EMP-TEMP
+         PERFORM ABRIR-TIMES-LECTURA.
+         PERFORM CALCULAR-EST-X-EMPRESA UNTIL TIM-EOF.
+         ADD 1 TO IND-TAB-EMP.
+
+       MOSTRAR-ESTADISTICAS.
+         DISPLAY LINEA-LISTADO-EST(I).
+         ADD 1 TO I.
+
+       ESTADISTICAS-X-EMPRESA.
+
+         DISPLAY ENCABE-LINEA1.
+         DISPLAY ENCABE-LINEA2-EST.
+         DISPLAY LINEA-EN-BLANCO.
+         DISPLAY ENCABE-LISTADO-EST.
+
+         PERFORM ORDERNAR-EMPRESAS-X-RAZ-SOC.
+         MOVE 1 TO I.
+         MOVE 5 TO WS-I.
+         PERFORM CARGAR-ANIOS-EST UNTIL I = 6.
+
+         MOVE 1 TO IND-TAB-EMP.
+         PERFORM CARGAR-EST-POR-EMPRESA
+                 UNTIL IND-TAB-EMP IS EQUAL WS-CANT-EMP.
+
+         MOVE 1 TO I.
+         PERFORM MOSTRAR-ESTADISTICAS UNTIL I = 7.
+
+           
 
        FIN.
            PERFORM CERRAR-ARCHIVOS.
