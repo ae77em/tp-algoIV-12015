@@ -361,6 +361,36 @@
            03 FILLER       PIC X(4) VALUE SPACES.
            03 FILLER       PIC X(5) VALUE 'Total'.
 
+       01 TOTAL-GLOBAL-EST.
+           03 FILLER           PIC X(4) VALUE SPACES.
+           03 FILLER           PIC X(7) VALUE 'Totales'.
+           03 FILLER           PIC X(11) VALUE SPACES.
+           03 TOTAL-EST-ENE    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(1) VALUE SPACE.
+           03 TOTAL-EST-FEB    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(1) VALUE SPACE.
+           03 TOTAL-EST-MAR    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(1) VALUE SPACE.
+           03 TOTAL-EST-ABR    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(1) VALUE SPACE.
+           03 TOTAL-EST-MAY    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(1) VALUE SPACE.
+           03 TOTAL-EST-JUN    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(1) VALUE SPACE.
+           03 TOTAL-EST-JUL    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(1) VALUE SPACE.
+           03 TOTAL-EST-AGO    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(1) VALUE SPACE.
+           03 TOTAL-EST-SEP    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(1) VALUE SPACE.
+           03 TOTAL-EST-OCT    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(1) VALUE SPACE.
+           03 TOTAL-EST-NOV    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(1) VALUE SPACE.
+           03 TOTAL-EST-DIC    PIC 9(3) VALUE 0.
+           03 FILLER           PIC X(5) VALUE SPACES.
+           03 TOTAL-EST-TOT    PIC 9(4) VALUE 0.
+
        01 TABLA-DETALLE-ESTA.
          03 LINEA-LISTADO-EST OCCURS 6 TIMES INDEXED BY I.
            05 LINEA-EST-COL-EMPRESA    PIC X(13) VALUE SPACES.
@@ -874,103 +904,141 @@
            MOVE 'NO' TO WS-ANIO-TEMP
            SET WS-OFFSET-ANIO-EST TO 99.
 
+      * se van sumando los valores obtenidos en el correspondiente mes
+      * y año en la tabla que se muestra por pantalla.
        CARGAR-DATOS-EN-MATRIZ-EST.
-      *    recalculo el valor mensual
-      *    recalculo el valor mensual de los ultimos 5 años
+
+      *  Se hacen los siguientes calculos, en el siguiente orden, dentro
+      *  de cada sentecia if, por cada mes del año:
+      *   > recalculo el valor mensual
+      *   > recalculo el valor mensual de los ultimos 5 años
+      *   > calculo el total mensual global
+      *  ENERO
          IF (WS-MES-MM = '01')
            COMPUTE LINEA-EST-COL-ENE(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-ENE(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-ENE(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-ENE(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+           COMPUTE TOTAL-EST-ENE = TOTAL-EST-ENE + REG-TIMES-HORAS
 
+      *  FEBRERO
          ELSE IF WS-MES-MM = '02'
            COMPUTE LINEA-EST-COL-FEB(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-FEB(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-FEB(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-FEB(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+           COMPUTE TOTAL-EST-FEB = TOTAL-EST-FEB + REG-TIMES-HORAS
 
+      *  MARZO
          ELSE IF WS-MES-MM = '03'
            COMPUTE LINEA-EST-COL-MAR(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-MAR(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-MAR(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-MAR(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
-               
+           COMPUTE TOTAL-EST-MAR = TOTAL-EST-MAR + REG-TIMES-HORAS
+
+      *  ABRIL
          ELSE IF WS-MES-MM = '04'
            COMPUTE LINEA-EST-COL-ABR(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-ABR(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-ABR(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-ABR(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
-               
+           COMPUTE TOTAL-EST-ABR = TOTAL-EST-ABR + REG-TIMES-HORAS
+
+      *  MAYO
          ELSE IF WS-MES-MM = '05'
            COMPUTE LINEA-EST-COL-MAY(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-MAY(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-MAY(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-MAY(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+           COMPUTE TOTAL-EST-MAY = TOTAL-EST-MAY + REG-TIMES-HORAS
 
+      *  JUNIO
          ELSE IF WS-MES-MM = '06'
            COMPUTE LINEA-EST-COL-JUN(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-JUN(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-JUN(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-JUN(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+           COMPUTE TOTAL-EST-JUN = TOTAL-EST-JUN + REG-TIMES-HORAS
 
+      *  JULIO
          ELSE IF WS-MES-MM = '07'
            COMPUTE LINEA-EST-COL-JUL(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-JUL(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-JUL(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-JUL(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+           COMPUTE TOTAL-EST-JUL = TOTAL-EST-JUL + REG-TIMES-HORAS
 
+      *  AGOSTO
          ELSE IF WS-MES-MM = '08'
            COMPUTE LINEA-EST-COL-AGO(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-AGO(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-AGO(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-AGO(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
-               
+           COMPUTE TOTAL-EST-AGO = TOTAL-EST-AGO + REG-TIMES-HORAS
+
+      *  SEPTIEMBRE
          ELSE IF WS-MES-MM = '09'
            COMPUTE LINEA-EST-COL-SEP(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-SEP(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-SEP(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-SEP(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
-               
+           COMPUTE TOTAL-EST-SEP = TOTAL-EST-SEP + REG-TIMES-HORAS
+
+      *  OCTUBRE
          ELSE IF WS-MES-MM = '10'
            COMPUTE LINEA-EST-COL-OCT(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-OCT(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-OCT(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-OCT(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
-               
+           COMPUTE TOTAL-EST-OCT = TOTAL-EST-OCT + REG-TIMES-HORAS
+
+      *  NOVIEMBRE
          ELSE IF WS-MES-MM = '11'
            COMPUTE LINEA-EST-COL-NOV(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-NOV(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-NOV(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-NOV(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
-               
+           COMPUTE TOTAL-EST-NOV = TOTAL-EST-NOV + REG-TIMES-HORAS
+
+      *  DICIEMBRE
          ELSE IF WS-MES-MM = '12'
            COMPUTE LINEA-EST-COL-DIC(WS-OFFSET-ANIO-EST)
                = LINEA-EST-COL-DIC(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
            COMPUTE LINEA-EST-COL-DIC(WS-OFFSET-TOT-MES)
                = LINEA-EST-COL-DIC(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+           COMPUTE TOTAL-EST-DIC = TOTAL-EST-DIC + REG-TIMES-HORAS
 
+      *  MAL OFFSET
          ELSE SET WS-OFFSET-MES TO 99.
 
-      *  recalculo el total anual
          IF NOT WS-OFFSET-MES-MAL
+      *    recalculo el total anual de la empresa
            COMPUTE LINEA-EST-COL-TOT(WS-OFFSET-ANIO-EST)
-             = LINEA-EST-COL-TOT(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS.
-      *  recalculo el total global
+             = LINEA-EST-COL-TOT(WS-OFFSET-ANIO-EST) + REG-TIMES-HORAS
+      *    recalculo el total global de la empresa
            COMPUTE LINEA-EST-COL-TOT(WS-OFFSET-TOT-MES)
-             = LINEA-EST-COL-TOT(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS.
+             = LINEA-EST-COL-TOT(WS-OFFSET-TOT-MES) + REG-TIMES-HORAS
+      *    recalculo el total global
+           COMPUTE TOTAL-EST-TOT = TOTAL-EST-TOT + REG-TIMES-HORAS.
 
        CALCULAR-EST-X-EMPRESA.
+      *  leo el registro en el archivo de horas
          PERFORM LEER-TIMES.
-      *  identifico el año a cargar
-         MOVE REG-TIMES-FECHA (5:4) TO WS-ANIO-AAAA.
-         PERFORM VERIFICAR-ANIO-EST.
-      *  si el año esta dentro del rango que tengo que mostrar
-      *  (los últimos 5), calculo la cantidad
-         IF WS-ANIO-TEMP-OK
-      *    identifico el mes a cargar
-           MOVE REG-TIMES-FECHA (3:2) TO WS-MES-MM
-      *    lo cargo en la matriz
-           PERFORM CARGAR-DATOS-EN-MATRIZ-EST.
+      *  si corresponde a la empresa que estoy filtrando
+         IF (REG-TIMES-EMPRESA IS EQUALS TAB-EMP-COD(IND-TAB-EMP))
+      *    identifico el año a cargar
+           MOVE REG-TIMES-FECHA (5:4) TO WS-ANIO-AAAA
+           PERFORM VERIFICAR-ANIO-EST
+      *    si el año esta dentro del rango que tengo que mostrar
+      *    (los últimos 5), calculo la cantidad
+           IF WS-ANIO-TEMP-OK
+      *      identifico el mes a cargar
+             MOVE REG-TIMES-FECHA (3:2) TO WS-MES-MM
+      *      lo cargo en la matriz
+             PERFORM CARGAR-DATOS-EN-MATRIZ-EST.
+
+
 
        CARGAR-EST-POR-EMPRESA.
          SET WS-I TO 1.
@@ -985,7 +1053,11 @@
 
          MOVE 1 TO I.
          PERFORM MOSTRAR-ESTADISTICAS UNTIL I = 7.
-         DISPLAY ' '.
+
+         IF IND-TAB-EMP IS NOT EQUAL WS-CANT-EMP
+           DISPLAY ' '
+         ELSE
+           DISPLAY LINEA-DIVISORIA-CONTINUA.
 
        MOSTRAR-ESTADISTICAS.
          DISPLAY LINEA-LISTADO-EST(I).
@@ -1008,6 +1080,9 @@
          MOVE 1 TO IND-TAB-EMP.
          PERFORM CARGAR-EST-POR-EMPRESA
                  UNTIL IND-TAB-EMP IS EQUAL WS-CANT-EMP.
+
+         DISPLAY ' '.
+         DISPLAY TOTAL-GLOBAL-EST.
 
        FIN.
            PERFORM CERRAR-ARCHIVOS.
