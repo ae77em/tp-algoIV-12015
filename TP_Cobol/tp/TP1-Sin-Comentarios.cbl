@@ -18,7 +18,7 @@
 
            SELECT ARCH-NOV2 ASSIGN TO DISK
                    ORGANIZATION IS LINE SEQUENTIAL
-				   FILE STATUS IS FS-NOV2.
+                   FILE STATUS IS FS-NOV2.
 
            SELECT ARCH-NOV3 ASSIGN TO DISK
                    ORGANIZATION IS LINE SEQUENTIAL
@@ -164,8 +164,8 @@
            88 LIS-EOF                VALUE '10'.
       
        77 FS-NOV1                    PIC XX.
-	       88 NOV1-OK                VALUE '00'.
-	       88 NOV1-EOF               VALUE '10'.
+           88 NOV1-OK                VALUE '00'.
+           88 NOV1-EOF               VALUE '10'.
 
        77 FS-NOV2                    PIC XX.
            88 NOV2-OK                VALUE '00'.
@@ -570,10 +570,11 @@
            PERFORM IMPRIMIR-ENCABEZADO-POR-FECHA.
 
            PERFORM ASIGNO-CORTE-CONS-FECHA.
-           
+
            PERFORM PROCESAR-HORAS-POR-FECHA
                UNTIL (NOV1-EOF AND NOV2-EOF AND NOV3-EOF)
-                OR REG-MEN-FECHA NOT EQUAL WS-CORTE-CONS-FECHA
+                OR REG-MEN-NUMERO NOT EQUAL WS-CORTE-CONS-NUM
+                OR REG-MEN-FECHA NOT EQUAL WS-CORTE-CONS-FECHA.
 
            PERFORM CARGAR-IMPRIMIR-TOTALES-X-FECHA.
 
@@ -1095,4 +1096,3 @@
            CLOSE ARCH-EMPRESAS.
            CLOSE ARCH-TIMES.
            CLOSE ARCH-LISTADO.
-

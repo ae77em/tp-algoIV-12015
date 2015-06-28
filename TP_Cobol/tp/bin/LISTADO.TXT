@@ -1,0 +1,316 @@
+ Fecha: 15/06/27                                                     HOJA : 001
+
+                            Listado de horas aplicadas
+Consultor: 00002                 Nombre: Nombre1
+                              Categoria: Training perro en lo
+                                 Tarifa: 002050
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  18/12/2013      002    Nuestro Tiempo SRL              2020          41410
+  18/12/2013      001    COLPIX                          0900          18450
+  18/12/2013      002    Nuestro Tiempo SRL              2020          41410
+
+Totales por fecha                                       04940       00101270
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  18/12/2011      003    INTRAWAY                        0900          18450
+  18/12/2011      002    Nuestro Tiempo SRL              2020          41410
+
+Totales por fecha                                       02920       00059860
+
+Totales por Consultor                                   07860     0000161130
+
+Total por General                                                 0000161130
+
+
+
+
+
+
+
+
+
+ Fecha: 15/06/27                                                     HOJA : 002
+
+                            Listado de horas aplicadas
+Consultor: 00009                 Nombre: Nombre2
+                              Categoria: SemiSenior casi capo
+                                 Tarifa: 006030
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  18/12/2015      002    Nuestro Tiempo SRL              2020          21806
+  18/12/2015      001    COLPIX                          0900          54270
+  18/12/2015      002    Nuestro Tiempo SRL              2020          21806
+
+Totales por fecha                                       04940       00297882
+
+Totales por Consultor                                   04940     0000297882
+
+Total por General                                                 0000459012
+
+
+
+
+
+
+
+
+
+ Fecha: 15/06/27                                                     HOJA : 003
+
+                            Listado de horas aplicadas
+Consultor: 00012                 Nombre: Nombre3
+                              Categoria: Junior casi sabe
+                                 Tarifa: 004030
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/07/2014      001    COLPIX                          0900          36270
+  19/07/2014      002    Nuestro Tiempo SRL              2020          81406
+
+Totales por fecha                                       02920       00117676
+
+Totales por Consultor                                   02920     0000117676
+
+Total por General                                                 0000576688
+
+
+
+
+
+
+
+
+
+ Fecha: 15/06/27                                                     HOJA : 004
+
+                            Listado de horas aplicadas
+Consultor: 00019                 Nombre: Nombre4
+                              Categoria: Senior todo un CAPO
+                                 Tarifa: 010080
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  18/12/2011      004    Sur Des Tecnologicos            2020          03616
+  18/12/2011      001    COLPIX                          0900          90720
+  18/12/2011      002    Nuestro Tiempo SRL              2020          03616
+  18/12/2011      001    COLPIX                          0900          90720
+
+Totales por fecha                                       05840       00588672
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  18/12/2013      003    INTRAWAY                        2020          03616
+
+Totales por fecha                                       02020       00203616
+
+Totales por Consultor                                   07860     0000792288
+
+Total por General                                                 0001368976
+
+
+
+
+
+
+
+
+
+ Fecha: 15/06/27                                                     HOJA : 005
+
+                            Listado de horas aplicadas
+Consultor: 00022                 Nombre: Nombre5
+                              Categoria: Senior todo un CAPO
+                                 Tarifa: 010080
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  18/12/2012      001    COLPIX                          0900          90720
+  18/12/2012      002    Nuestro Tiempo SRL              2020          03616
+
+Totales por fecha                                       02920       00294336
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/11/2011      004    Sur Des Tecnologicos            0900          90720
+
+Totales por fecha                                       00900       00090720
+
+Totales por Consultor                                   03820     0000385056
+
+Total por General                                                 0001754032
+
+
+
+
+
+
+
+
+
+ Fecha: 15/06/27                                                     HOJA : 006
+
+                            Listado de horas aplicadas
+Consultor: 00029                 Nombre: Nombre6
+                              Categoria: SemiSenior casi capo
+                                 Tarifa: 006030
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/07/2014      001    COLPIX                          0900          54270
+  19/07/2014      002    Nuestro Tiempo SRL              2020          21806
+
+Totales por fecha                                       02920       00176076
+
+Totales por Consultor                                   02920     0000176076
+
+Total por General                                                 0001930108
+
+
+
+
+
+
+
+
+
+ Fecha: 15/06/27                                                     HOJA : 007
+
+                            Listado de horas aplicadas
+Consultor: 00032                 Nombre: Nombre7
+                              Categoria: Junior casi sabe
+                                 Tarifa: 004030
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/07/2014      001    COLPIX                          0900          36270
+
+Totales por fecha                                       00900       00036270
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  18/12/2013      002    Nuestro Tiempo SRL              2020          81406
+
+Totales por fecha                                       02020       00081406
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/07/2014      003    INTRAWAY                        0900          36270
+
+Totales por fecha                                       00900       00036270
+
+Totales por Consultor                                   03820     0000153946
+
+Total por General                                                 0002084054
+
+
+
+
+
+
+
+
+
+ Fecha: 15/06/27                                                     HOJA : 008
+
+                            Listado de horas aplicadas
+Consultor: 00039                 Nombre: Nombre8
+                              Categoria: SemiSenior casi capo
+                                 Tarifa: 006030
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/07/2014      004    Sur Des Tecnologicos            0900          54270
+
+Totales por fecha                                       00900       00054270
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  18/12/2011      002    Nuestro Tiempo SRL              2020          21806
+
+Totales por fecha                                       02020       00121806
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/07/2012      001    COLPIX                          0900          54270
+
+Totales por fecha                                       00900       00054270
+
+Totales por Consultor                                   03820     0000230346
+
+Total por General                                                 0002314400
+
+
+
+
+
+
+
+
+
+ Fecha: 15/06/27                                                     HOJA : 009
+
+                            Listado de horas aplicadas
+Consultor: 00042                 Nombre: Nombre9
+                              Categoria: SemiSenior casi capo
+                                 Tarifa: 006030
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/11/2011      002    Nuestro Tiempo SRL              2020          21806
+
+Totales por fecha                                       02020       00121806
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/11/2015      001    COLPIX                          0900          54270
+
+Totales por fecha                                       00900       00054270
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  18/12/2012      004    Sur Des Tecnologicos            2020          21806
+
+Totales por fecha                                       02020       00121806
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/11/2015      003    INTRAWAY                        0900          54270
+
+Totales por fecha                                       00900       00054270
+
+Totales por Consultor                                   05840     0000352152
+
+Total por General                                                 0002666552
+
+
+
+
+
+
+
+
+
+
