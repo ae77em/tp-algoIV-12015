@@ -195,7 +195,7 @@
         CLOSE TIMES-IDX.
         DISPLAY WS-ACUM-REG " REGISTRO GRABADOS ".
         DISPLAY "--------------Fin OUTPUT PROCEDURE".
-        DISPLAY " ".
+        DISPLAY " 	".
 
     ULTIMA-SECTION.
     LEER-ARCH-TEMP.
