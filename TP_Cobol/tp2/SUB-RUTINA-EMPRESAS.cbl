@@ -53,16 +53,11 @@
            OPEN INPUT ARCH-EMP-IDX.
            IF OK
               MOVE 'OK' TO COD-ERROR
-              DISPLAY "EMPRESAS ABIERTO"
            ELSE
               MOVE 'XX' TO COD-ERROR.
 
        CERRAR.
            CLOSE ARCH-EMP-IDX.
-           IF OK
-              MOVE 'OK' TO COD-ERROR
-           ELSE
-              MOVE 'YY' TO COD-ERROR.
 
        LEER.
            MOVE CUIT TO REG-EMP-IND-CUIT.
