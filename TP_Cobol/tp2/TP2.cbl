@@ -245,8 +245,3 @@
        LEER-ARCH-TRABAJOS-X-EMPRESA.
            RETURN ARCH-TRABAJOS-X-EMPRESA AT END SET T-X-E-EOF TO TRUE   
            END-RETURN.
-         
-          
-
-todo le cae mal
-un rechazo
