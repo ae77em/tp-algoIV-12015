@@ -1,4 +1,4 @@
- Fecha: 15/06/27                                                     HOJA : 001
+ Fecha: 15/06/28                                                     HOJA : 001
 
                             Listado de horas aplicadas
 Consultor: 00002                 Nombre: Nombre1
@@ -34,7 +34,7 @@ Total por General                                                 0000161130
 
 
 
- Fecha: 15/06/27                                                     HOJA : 002
+ Fecha: 15/06/28                                                     HOJA : 002
 
                             Listado de horas aplicadas
 Consultor: 00009                 Nombre: Nombre2
@@ -62,7 +62,7 @@ Total por General                                                 0000459012
 
 
 
- Fecha: 15/06/27                                                     HOJA : 003
+ Fecha: 15/06/28                                                     HOJA : 003
 
                             Listado de horas aplicadas
 Consultor: 00012                 Nombre: Nombre3
@@ -74,14 +74,12 @@ Consultor: 00012                 Nombre: Nombre3
 
   19/07/2014      001    COLPIX                          0900          36270
   19/07/2014      002    Nuestro Tiempo SRL              2020          81406
-  19/07/2014      004    Sur Des Tecnologicos            0900          36270
 
-Totales por fecha                                       03820       00153946
+Totales por fecha                                       02920       00117676
 
-Totales por Consultor                                   03820     0000153946
+Totales por Consultor                                   02920     0000117676
 
-Total por General                                                 0000612958
-
+Total por General                                                 0000576688
 
 
 
@@ -90,7 +88,8 @@ Total por General                                                 0000612958
 
 
 
- Fecha: 15/06/27                                                     HOJA : 004
+
+ Fecha: 15/06/28                                                     HOJA : 004
 
                             Listado de horas aplicadas
 Consultor: 00019                 Nombre: Nombre4
@@ -116,7 +115,7 @@ Totales por fecha                                       02020       00203616
 
 Totales por Consultor                                   07860     0000792288
 
-Total por General                                                 0001405246
+Total por General                                                 0001368976
 
 
 
@@ -126,7 +125,7 @@ Total por General                                                 0001405246
 
 
 
- Fecha: 15/06/27                                                     HOJA : 005
+ Fecha: 15/06/28                                                     HOJA : 005
 
                             Listado de horas aplicadas
 Consultor: 00022                 Nombre: Nombre5
@@ -145,14 +144,12 @@ Totales por fecha                                       02920       00294336
 --------------------------------------------------------------------------------
 
   19/11/2011      004    Sur Des Tecnologicos            0900          90720
-  19/11/2011      002    Nuestro Tiempo SRL              2020          03616
 
-Totales por fecha                                       02920       00294336
+Totales por fecha                                       00900       00090720
 
-Totales por Consultor                                   05840     0000588672
+Totales por Consultor                                   03820     0000385056
 
-Total por General                                                 0001993918
-
+Total por General                                                 0001754032
 
 
 
@@ -161,7 +158,8 @@ Total por General                                                 0001993918
 
 
 
- Fecha: 15/06/27                                                     HOJA : 006
+
+ Fecha: 15/06/28                                                     HOJA : 006
 
                             Listado de horas aplicadas
 Consultor: 00029                 Nombre: Nombre6
@@ -173,14 +171,12 @@ Consultor: 00029                 Nombre: Nombre6
 
   19/07/2014      001    COLPIX                          0900          54270
   19/07/2014      002    Nuestro Tiempo SRL              2020          21806
-  19/07/2014      001    COLPIX                          0900          54270
 
-Totales por fecha                                       03820       00230346
+Totales por fecha                                       02920       00176076
 
-Totales por Consultor                                   03820     0000230346
+Totales por Consultor                                   02920     0000176076
 
-Total por General                                                 0002224264
-
+Total por General                                                 0001930108
 
 
 
@@ -189,12 +185,20 @@ Total por General                                                 0002224264
 
 
 
- Fecha: 15/06/27                                                     HOJA : 007
+
+ Fecha: 15/06/28                                                     HOJA : 007
 
                             Listado de horas aplicadas
 Consultor: 00032                 Nombre: Nombre7
                               Categoria: Junior casi sabe
                                  Tarifa: 004030
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/07/2014      001    COLPIX                          0900          36270
+
+Totales por fecha                                       00900       00036270
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
@@ -210,11 +214,9 @@ Totales por fecha                                       02020       00081406
 
 Totales por fecha                                       00900       00036270
 
-Totales por Consultor                                   02920     0000117676
+Totales por Consultor                                   03820     0000153946
 
-Total por General                                                 0002341940
-
-
+Total por General                                                 0002084054
 
 
 
@@ -222,12 +224,21 @@ Total por General                                                 0002341940
 
 
 
- Fecha: 15/06/27                                                     HOJA : 008
+
+
+ Fecha: 15/06/28                                                     HOJA : 008
 
                             Listado de horas aplicadas
 Consultor: 00039                 Nombre: Nombre8
                               Categoria: SemiSenior casi capo
                                  Tarifa: 006030
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/07/2014      004    Sur Des Tecnologicos            0900          54270
+
+Totales por fecha                                       00900       00054270
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
@@ -243,11 +254,9 @@ Totales por fecha                                       02020       00121806
 
 Totales por fecha                                       00900       00054270
 
-Totales por Consultor                                   02920     0000176076
+Totales por Consultor                                   03820     0000230346
 
-Total por General                                                 0002518016
-
-
+Total por General                                                 0002314400
 
 
 
@@ -255,12 +264,21 @@ Total por General                                                 0002518016
 
 
 
- Fecha: 15/06/27                                                     HOJA : 009
+
+
+ Fecha: 15/06/28                                                     HOJA : 009
 
                             Listado de horas aplicadas
 Consultor: 00042                 Nombre: Nombre9
                               Categoria: SemiSenior casi capo
                                  Tarifa: 006030
+
+   Fecha        Empresa          Razon Social            Horas        Importe
+--------------------------------------------------------------------------------
+
+  19/11/2011      002    Nuestro Tiempo SRL              2020          21806
+
+Totales por fecha                                       02020       00121806
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
@@ -283,9 +301,9 @@ Totales por fecha                                       02020       00121806
 
 Totales por fecha                                       00900       00054270
 
-Totales por Consultor                                   03820     0000230346
+Totales por Consultor                                   05840     0000352152
 
-Total por General                                                 0002748362
+Total por General                                                 0002666552
 
 
 

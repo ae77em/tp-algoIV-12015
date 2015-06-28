@@ -502,8 +502,6 @@
        CARGAR-MAESTRO.
            PERFORM DETERMINAR-MENOR.
 
-           DISPLAY "MENOR:  " .
-
            PERFORM BUSCAR-DATOS-CONSULTOR.
 
            PERFORM IMPRIMIR-ENCABEZADO-GENERAL.
@@ -760,10 +758,10 @@
        ORD-EMP.
 
        ORDERNAR-EMPRESAS-X-RAZ-SOC.
-          MOVE 1 TO WS-I.
-           PERFORM UNTIL WS-I > WS-CANT-EMP
+         MOVE 1 TO WS-I.
+           PERFORM UNTIL WS-I = WS-CANT-EMP
              MOVE WS-I TO WS-J
-             PERFORM UNTIL WS-J > WS-CANT-EMP
+             PERFORM UNTIL WS-J = WS-CANT-EMP
                IF (TAB-EMP-RAZON(WS-I) > TAB-EMP-RAZON(WS-J))
                  MOVE TAB-EMP(WS-I) TO REG-TAB-EMP-TEMP
                  MOVE TAB-EMP(WS-J) TO TAB-EMP(WS-I)
@@ -773,7 +771,7 @@
              END-PERFORM
              ADD 1 TO WS-I GIVING WS-I
            END-PERFORM.
-           MOVE 0 TO WS-I.
+           MOVE 1 TO WS-I.
 
        INICIALIZACION-VARIABLES.
            MOVE 90 TO WS-ACUM-LINEAS.
