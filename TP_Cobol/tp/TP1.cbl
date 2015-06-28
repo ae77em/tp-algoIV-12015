@@ -29,7 +29,7 @@
            SELECT ARCH-CATEGORIAS ASSIGN TO DISK
                    ORGANIZATION IS LINE SEQUENTIAL
                    FILE STATUS IS FS-CAT.
-      
+
        DATA DIVISION.
 
        FILE SECTION.
@@ -80,7 +80,7 @@
            03 REG-TIMES-EMPRESA           PIC 9(3).
            03 REG-TIMES-TAREA             PIC X(4).
            03 REG-TIMES-HORAS             PIC 9(2)v99.
-                     
+
        FD ARCH-CONSULTORES LABEL RECORD IS STANDARD
              VALUE OF FILE-ID IS 'CONSULTORES.DAT'
              DATA RECORD IS REG-CONS.
@@ -113,7 +113,7 @@
            03 REG-CAT-SRT           PIC X(2).
            03 REG-CAT-DESC          PIC X(20).
            03 REG-CAT-TARIFA        PIC 9(5)V99.
-           
+
        WORKING-STORAGE SECTION.
       ******************************************************************
       * TABLAS
@@ -127,7 +127,7 @@
            03 TAB-EMP OCCURS 999 TIMES INDEXED BY IND-TAB-EMP.
                05 TAB-EMP-COD           PIC 9(3).
                05 TAB-EMP-RAZON         PIC X(25).
-      
+
        01 TABLA-CATEGORIAS.
            03 TAB-CAT OCCURS 30 TIMES INDEXED BY IND-TAB-CAT.
                05 TAB-CAT-SRT           PIC X(2).
@@ -537,7 +537,7 @@
           MOVE WS-ACUM-HORAS-X-CONS TO LIN-TOTAL-HORAS-X-CONS.
 
           DISPLAY LINEA-DATOS-POR-CONS.
-       
+
        RESET-DATOS-CONS.
           MOVE 0 TO WS-ACUM-IMP-X-CONS.
           MOVE 0 TO WS-ACUM-HORAS-X-CONS.
@@ -553,7 +553,7 @@
        OBTENER-DATOS-CAT-CONSULTOR.
            MOVE TAB-CAT-DES(IND-TAB-CAT) TO WS-CAT-DES.
            MOVE TAB-CAT-TARIFA(IND-TAB-CAT) TO WS-CAT-TARIFA.
-          
+
        ASIGNO-CORTE-CONS-NUM.
            MOVE REG-MEN-NUMERO TO WS-CORTE-CONS-NUM.
 
@@ -564,7 +564,7 @@
            PERFORM IMPRIMIR-ENCABEZADO-POR-FECHA.
 
            PERFORM ASIGNO-CORTE-CONS-FECHA.
-           
+
            PERFORM PROCESAR-HORAS-POR-FECHA
                UNTIL (NOV1-EOF AND NOV2-EOF AND NOV3-EOF)
                 OR REG-MEN-FECHA NOT EQUAL WS-CORTE-CONS-FECHA
@@ -582,7 +582,7 @@
        CARGAR-IMPRIMIR-TOTALES-X-FECHA.
            MOVE WS-ACUM-HORAS-X-FECHA TO LIN-TOTAL-HORAS-X-FECHA.
            MOVE WS-ACUM-IMP-X-FECHA TO LIN-TOTAL-IMPORTE-X-FECHA.
-          
+
            DISPLAY " ".
            DISPLAY LINEA-DATOS-POR-FECHA.
            DISPLAY " ".
@@ -632,7 +632,7 @@
        ACUM-DATOS-POR-FECHA.
            ADD REG-MEN-HORAS TO WS-ACUM-HORAS-X-FECHA.
            ADD WS-IMPORTE-UN-TRABAJO TO WS-ACUM-IMP-X-FECHA.
-           
+
        RESET-DATOS-POR-FECHA.
            MOVE 0 TO WS-ACUM-HORAS-X-FECHA.
            MOVE 0 TO WS-ACUM-IMP-X-FECHA.
@@ -675,8 +675,8 @@
 
        IMPRIMIR-ENCABEZADO-GENERAL.
            PERFORM CARGAR-E-IMPRIMIR-PRIMERA-LINEA.
-  
-       INCREMENTAR-NRO-HOJA.    
+
+       INCREMENTAR-NRO-HOJA.
            ADD 1 TO WS-ACUM-NRO-HOJAS.
 
        CARGAR-E-IMPRIMIR-PRIMERA-LINEA.
@@ -694,10 +694,10 @@
           MOVE REG-CONS-NUMERO TO ENCABE-CONSULTOR-LINEA1-NUMERO.
           MOVE REG-CONS-NOMBRE TO ENCABE-CONSULTOR-LINEA1-NOMBRE.
           DISPLAY ENCABE-CONSULTOR-LINEA1.
-                   
+
           MOVE WS-CAT-DES TO ENCABE-CONSULTOR-LINEA2-CAT.
           DISPLAY ENCABE-CONSULTOR-LINEA2.
-          
+
           MOVE WS-CAT-TARIFA TO ENCABE-CONSULTOR-LINEA3-TARIFA.
           DISPLAY ENCABE-CONSULTOR-LINEA3.
 
@@ -739,7 +739,7 @@
 
        CARGAR-EMPRESA-EN-TABLA.
            MOVE REG-EMP-TAB TO TAB-EMP(IND-TAB-EMP).
-           
+
            ADD 1 TO IND-TAB-EMP.
 
            READ ARCH-EMPRESAS AT END MOVE '10' TO FS-EMP.
@@ -767,9 +767,9 @@
            MOVE 1 TO WS-ACUM-NRO-HOJAS.
            MOVE 1 TO WS-I.
            MOVE ZERO TO WS-ACUM-IMP-CONS-FECHA.
-           MOVE ZERO TO WS-ACUM-IMP-CONS.      
-           MOVE ZERO TO WS-ACUM-HOR-CONS.      
-           MOVE ZERO TO WS-ACUM-IMP-GEN.       
+           MOVE ZERO TO WS-ACUM-IMP-CONS.
+           MOVE ZERO TO WS-ACUM-HOR-CONS.
+           MOVE ZERO TO WS-ACUM-IMP-GEN.
 
            ACCEPT FECHA FROM DATE.
 
@@ -1090,7 +1090,7 @@
 
        CERRAR-ARCHIVOS.
            CLOSE ARCH-NOV1.
-           
+
            CLOSE ARCH-NOV2.
            CLOSE ARCH-NOV3.
            CLOSE ARCH-CONSULTORES.
