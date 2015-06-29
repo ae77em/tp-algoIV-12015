@@ -158,13 +158,13 @@
                          REG-T-X-E-CUIT,
                          REG-T-X-E-FECHA,
                          REG-T-X-E-COD-CONS
-                INPUT PROCEDURE IS ENTRADA
-                OUTPUT PROCEDURE IS SALIDA.
+                INPUT PROCEDURE IS CARGAR-ARCHIVO-SORT
+                OUTPUT PROCEDURE IS PROCESAR-ARCHIVO-SORT.
           DISPLAY "Fin de la ejecucion total..".
           ACCEPT WS-LETRA.
           STOP RUN.
 
-       ENTRADA.
+       CARGAR-ARCHIVO-SORT.
          MOVE 0 TO ACUM.
          PERFORM ABRIR-ARCHIVOS.
          PERFORM LEER-Y-SETEAR-PARAMETROS.
@@ -229,7 +229,7 @@
          CLOSE ARCH-PARAMETROS.
          CLOSE ARCH-EMP-IDX.
 
-       SALIDA.
+       PROCESAR-ARCHIVO-SORT.
           MOVE 0 TO WS-CANT-REG.
 
           PERFORM LEER-ARCH-TRABAJOS-X-EMPRESA.

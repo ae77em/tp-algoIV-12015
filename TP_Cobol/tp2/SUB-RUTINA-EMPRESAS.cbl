@@ -14,7 +14,7 @@
 
           DATA DIVISION.
           FILE SECTION.
-            
+
           FD ARCH-EMP-IDX LABEL RECORD IS STANDARD
                      VALUE OF FILE-ID IS 'EMPRESAS-INDEXED.DAT'
                      DATA RECORD IS REG-EMP-INDEXED.
