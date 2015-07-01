@@ -160,6 +160,7 @@
                          REG-T-X-E-COD-CONS
                 INPUT PROCEDURE IS CARGAR-ARCHIVO-SORT
                 OUTPUT PROCEDURE IS PROCESAR-ARCHIVO-SORT.
+
           DISPLAY "Fin de la ejecucion total..".
           ACCEPT WS-LETRA.
           STOP RUN.

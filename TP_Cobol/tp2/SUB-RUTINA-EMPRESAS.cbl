@@ -47,7 +47,7 @@
               PERFORM CERRAR.
            IF COD-OPER = 'R'
               PERFORM LEER.
-           EXIT PROGRAM.
+           GOBACK.
 
        ABRIR.
            OPEN INPUT ARCH-EMP-IDX.
