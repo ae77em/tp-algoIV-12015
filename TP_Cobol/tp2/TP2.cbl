@@ -151,6 +151,9 @@
        01 WS-COD-ERROR                PIC XX.
        01 ACUM     PIC 999 VALUE 000.
 
+       01 WS-CORTE-FECHA              PIC X(8).
+       01 WS-CORTE-RAZON-SOCIAL       PIC X(25).
+
        PROCEDURE DIVISION.
        TP2.
           SORT ARCH-TRABAJOS-X-EMPRESA ON ASCENDING KEY
@@ -244,13 +247,38 @@
           END-RETURN.
 
        PROCESAR-LISTADO.
-          ADD 1 TO WS-CANT-REG.
+          PERFORM ASIGNAR-CORTE-RAZON-SOCIAL.
 
-          DISPLAY WS-CANT-REG ") "
-                  REG-T-X-E-RAZON " "
-                  REG-T-X-E-CUIT " "
-                  REG-T-X-E-FECHA " "
-                  REG-T-X-E-COD-CONS " "
-                  REG-T-X-E-HORAS.
+          DISPLAY  "RAZON:  " REG-T-X-E-RAZON  REG-T-X-E-CUIT " ".
+          DISPLAY " ";
+
+        	
+
+          PERFORM PROCESAR-TRABAJOS-X-RAZON UNTIL 
+          						WS-CORTE-RAZON-SOCIAL NOT EQUAL REG-T-X-E-RAZON
+          						OR T-X-E-EOF.
+
+
+       ASIGNAR-CORTE-RAZON-SOCIAL.
+          MOVE REG-T-X-E-RAZON TO WS-CORTE-RAZON-SOCIAL.
+
+       PROCESAR-TRABAJOS-X-RAZON.
+       	  PERFORM ASIGNAR-CORTE-FECHA.
+
+		  DISPLAY  "FECHA:  " REG-T-X-E-FECHA.
+
+       	  PERFORM PROCESAR-TRABAJOS-X-FECHA UNTIL 
+          						WS-CORTE-RAZON-SOCIAL NOT EQUAL REG-T-X-E-RAZON
+          						OR WS-CORTE-FECHA NOT EQUAL REG-T-X-E-FECHA
+          						OR T-X-E-EOF.
+
+       ASIGNAR-CORTE-FECHA.
+          MOVE REG-T-X-E-FECHA TO WS-CORTE-FECHA.
+
+       PROCESAR-TRABAJOS-X-FECHA.
+           DISPLAY   "                  " REG-T-X-E-COD-CONS " "	 REG-T-X-E-HORAS.
 
           PERFORM LEER-ARCH-TRABAJOS-X-EMPRESA.
+
+
+
