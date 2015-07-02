@@ -145,6 +145,7 @@
        01  WS-MIN-CUIT     PIC 9(11).
        01  WS-MAX-CUIT     PIC 9(11).
 
+      * parametros subrutina
        01 WS-COD-OPER                 PIC X.
        01 WS-CUIT                     PIC 9(11).
        01 WS-RAZON                    PIC X(25).
@@ -165,7 +166,6 @@
                 OUTPUT PROCEDURE IS PROCESAR-ARCHIVO-SORT.
 
           DISPLAY "Fin de la ejecucion total..".
-          ACCEPT WS-LETRA.
           STOP RUN.
 
        CARGAR-ARCHIVO-SORT.
@@ -191,7 +191,13 @@
        ABRIR-ARCHIVOS.
          OPEN INPUT ARCH-TIMES-IDX.
          OPEN INPUT ARCH-PARAMETROS.
-         OPEN INPUT ARCH-EMP-IDX.
+
+         MOVE 'A' TO WS-COD-OPER.
+
+         CALL 'EMPRESAS'
+           USING WS-COD-OPER, WS-CUIT, WS-RAZON, WS-COD-ERROR.
+
+         DISPLAY 'RES. DE LLAMADA A SUBRUTINA D APERTURA: 'WS-COD-ERROR.
 
        LEER-Y-SETEAR-PARAMETROS.
          READ ARCH-PARAMETROS.
@@ -223,13 +229,24 @@
          PERFORM LEER-MAESTRO-TIMES.
 
        BUSCAR-RAZON-SOCIAL.
-         MOVE REG-KEY-CUIT TO REG-EMP-IND-CUIT.
-         READ ARCH-EMP-IDX RECORD KEY IS REG-EMP-IND-CUIT.
+         MOVE REG-KEY-CUIT TO WS-CUIT.
+         MOVE 'L' TO WS-COD-OPER.
+         CALL 'EMPRESAS'
+                   USING WS-COD-OPER, WS-CUIT, WS-RAZON, WS-COD-ERROR.
+
+         DISPLAY 'RES. DE LLAMADA A SUBRUTINA D LECTURA: 'WS-COD-ERROR.
+
 
        CERRAR-ARCHIVOS.
          CLOSE ARCH-TIMES-IDX.
          CLOSE ARCH-PARAMETROS.
-         CLOSE ARCH-EMP-IDX.
+
+         MOVE 'C' TO WS-COD-OPER.
+
+         CALL 'EMPRESAS'
+                 USING WS-COD-OPER, WS-CUIT, WS-RAZON, WS-COD-ERROR.
+
+         DISPLAY 'RES. DE LLAMADA A SUBRUTINA D CIERRE: 'WS-COD-ERROR.
 
        PROCESAR-ARCHIVO-SORT.
           MOVE 0 TO WS-CANT-REG.
@@ -251,35 +268,32 @@
           PERFORM ASIGNAR-CORTE-RAZON-SOCIAL.
 
           DISPLAY  "RAZON:  " REG-T-X-E-RAZON  REG-T-X-E-CUIT " ".
-          DISPLAY " ";
 
-        	
-
-          PERFORM PROCESAR-TRABAJOS-X-RAZON UNTIL 
-          						WS-CORTE-RAZON-SOCIAL NOT EQUAL REG-T-X-E-RAZON
-          						OR T-X-E-EOF.
+          PERFORM PROCESAR-TRABAJOS-X-RAZON UNTIL
+                      WS-CORTE-RAZON-SOCIAL NOT EQUAL REG-T-X-E-RAZON
+                      OR T-X-E-EOF.
 
 
        ASIGNAR-CORTE-RAZON-SOCIAL.
           MOVE REG-T-X-E-RAZON TO WS-CORTE-RAZON-SOCIAL.
 
        PROCESAR-TRABAJOS-X-RAZON.
-       	  PERFORM ASIGNAR-CORTE-FECHA.
+             PERFORM ASIGNAR-CORTE-FECHA.
 
-		  DISPLAY  "FECHA:  " REG-T-X-E-FECHA.
+          DISPLAY  "FECHA:  " REG-T-X-E-FECHA.
 
-       	  PERFORM PROCESAR-TRABAJOS-X-FECHA UNTIL 
-          						WS-CORTE-RAZON-SOCIAL NOT EQUAL REG-T-X-E-RAZON
-          						OR WS-CORTE-FECHA NOT EQUAL REG-T-X-E-FECHA
-          						OR T-X-E-EOF.
+             PERFORM PROCESAR-TRABAJOS-X-FECHA UNTIL
+                    WS-CORTE-RAZON-SOCIAL NOT EQUAL REG-T-X-E-RAZON
+                    OR WS-CORTE-FECHA NOT EQUAL REG-T-X-E-FECHA
+                    OR T-X-E-EOF.
 
        ASIGNAR-CORTE-FECHA.
           MOVE REG-T-X-E-FECHA TO WS-CORTE-FECHA.
 
        PROCESAR-TRABAJOS-X-FECHA.
-           DISPLAY   "                  " REG-T-X-E-COD-CONS " "	 REG-T-X-E-HORAS.
+           DISPLAY   "                  "
+                   REG-T-X-E-COD-CONS
+                   " "
+                   REG-T-X-E-HORAS.
 
           PERFORM LEER-ARCH-TRABAJOS-X-EMPRESA.
-
-
-

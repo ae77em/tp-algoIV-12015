@@ -58,6 +58,7 @@
 
        CERRAR.
            CLOSE ARCH-EMP-IDX.
+           MOVE 'OK' TO COD-ERROR.
 
        LEER.
            MOVE CUIT TO REG-EMP-IND-CUIT.

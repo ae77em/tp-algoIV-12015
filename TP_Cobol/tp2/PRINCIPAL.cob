@@ -29,8 +29,8 @@
        MOVE 2 TO Y.
        MOVE 0 TO Z.
 
-       ADD X TO Z.
-       ADD Y TO Z.
+      * ADD X TO Z.
+      * ADD Y TO Z.
 
        DISPLAY 'DEBE DEVOLVER ' Z.
 
