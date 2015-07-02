@@ -1,4 +1,4 @@
- Fecha: 15/06/30                                                     HOJA : 001
+ Fecha: 15/07/02                                                     HOJA : 001
 
                             Listado de horas aplicadas
 Consultor: 00001                 Nombre: Nombre1
@@ -8,17 +8,17 @@ Consultor: 00001                 Nombre: Nombre1
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/11/2013      004    Sur Des Tecnologicos            2020          41410
-  18/11/2013      001    COLPIX                          0900          18450
-  18/11/2013      002    Nuestro Tiempo SRL              2020          41410
+  20/13/1118      004    Sur Des Tecnologicos            2020          41410
+  20/13/1118      001    COLPIX                          0900          18450
+  20/13/1118      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       04940       00101270
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  07/12/2014      001    COLPIX                          0900          18450
-  07/12/2014      003    INTRAWAY                        2020          41410
+  20/14/1207      001    COLPIX                          0900          18450
+  20/14/1207      003    INTRAWAY                        2020          41410
 
 Totales por fecha                                       02920       00059860
 
@@ -34,7 +34,7 @@ Total por General                                                 0000161130
 
 
 
- Fecha: 15/06/30                                                     HOJA : 002
+ Fecha: 15/07/02                                                     HOJA : 002
 
                             Listado de horas aplicadas
 Consultor: 00002                 Nombre: Nombre1
@@ -44,17 +44,17 @@ Consultor: 00002                 Nombre: Nombre1
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2013      002    Nuestro Tiempo SRL              2020          41410
-  18/12/2013      001    COLPIX                          0900          18450
-  18/12/2013      002    Nuestro Tiempo SRL              2020          41410
+  20/13/1218      002    Nuestro Tiempo SRL              2020          41410
+  20/13/1218      001    COLPIX                          0900          18450
+  20/13/1218      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       04940       00101270
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2014      003    INTRAWAY                        0900          18450
-  18/12/2014      002    Nuestro Tiempo SRL              2020          41410
+  20/14/1218      003    INTRAWAY                        0900          18450
+  20/14/1218      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02920       00059860
 
@@ -70,7 +70,7 @@ Total por General                                                 0000322260
 
 
 
- Fecha: 15/06/30                                                     HOJA : 003
+ Fecha: 15/07/02                                                     HOJA : 003
 
                             Listado de horas aplicadas
 Consultor: 00003                 Nombre: Nombre1
@@ -80,42 +80,42 @@ Consultor: 00003                 Nombre: Nombre1
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2012      002    Nuestro Tiempo SRL              2020          41410
+  20/12/1218      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2013      002    Nuestro Tiempo SRL              2020          41410
+  20/13/1218      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2014      002    Nuestro Tiempo SRL              2020          41410
+  20/14/1218      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2015      002    Nuestro Tiempo SRL              2020          41410
+  20/15/1218      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/12/2015      002    Nuestro Tiempo SRL              2020          41410
+  20/15/1219      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  20/12/2015      002    Nuestro Tiempo SRL              2020          41410
+  20/15/1220      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
@@ -131,7 +131,7 @@ Total por General                                                 0000570720
 
 
 
- Fecha: 15/06/30                                                     HOJA : 004
+ Fecha: 15/07/02                                                     HOJA : 004
 
                             Listado de horas aplicadas
 Consultor: 00004                 Nombre: Nombre1
@@ -141,57 +141,57 @@ Consultor: 00004                 Nombre: Nombre1
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2011      002    Nuestro Tiempo SRL              2020          41410
-  18/12/2011      003    INTRAWAY                        2020          41410
-  18/12/2011      004    Sur Des Tecnologicos            2020          41410
-  18/12/2011      001    COLPIX                          2020          41410
+  20/11/1218      002    Nuestro Tiempo SRL              2020          41410
+  20/11/1218      003    INTRAWAY                        2020          41410
+  20/11/1218      004    Sur Des Tecnologicos            2020          41410
+  20/11/1218      001    COLPIX                          2020          41410
 
 Totales por fecha                                       08080       00165640
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  08/11/2013      002    Nuestro Tiempo SRL              2020          41410
-  08/11/2013      003    INTRAWAY                        2020          41410
-  08/11/2013      004    Sur Des Tecnologicos            2020          41410
-  08/11/2013      001    COLPIX                          2020          41410
+  20/13/1108      002    Nuestro Tiempo SRL              2020          41410
+  20/13/1108      003    INTRAWAY                        2020          41410
+  20/13/1108      004    Sur Des Tecnologicos            2020          41410
+  20/13/1108      001    COLPIX                          2020          41410
 
 Totales por fecha                                       08080       00165640
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  08/08/2014      002    Nuestro Tiempo SRL              2020          41410
-  08/08/2014      001    COLPIX                          2020          41410
-  08/08/2014      003    INTRAWAY                        2020          41410
+  20/14/0808      002    Nuestro Tiempo SRL              2020          41410
+  20/14/0808      001    COLPIX                          2020          41410
+  20/14/0808      003    INTRAWAY                        2020          41410
 
 Totales por fecha                                       06060       00124230
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/01/2015      002    Nuestro Tiempo SRL              2020          41410
+  20/15/0119      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  20/04/2015      002    Nuestro Tiempo SRL              2020          41410
+  20/15/0420      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  22/07/2015      002    Nuestro Tiempo SRL              2020          41410
+  20/15/0722      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  30/12/2015      002    Nuestro Tiempo SRL              2020          41410
+  20/15/1230      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
@@ -207,7 +207,7 @@ Total por General                                                 0001191870
 
 
 
- Fecha: 15/06/30                                                     HOJA : 005
+ Fecha: 15/07/02                                                     HOJA : 005
 
                             Listado de horas aplicadas
 Consultor: 00005                 Nombre: Nombre1
@@ -217,26 +217,26 @@ Consultor: 00005                 Nombre: Nombre1
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/01/2012      004    Sur Des Tecnologicos            2020          41410
-  18/01/2012      002    Nuestro Tiempo SRL              0900          18450
+  20/12/0118      004    Sur Des Tecnologicos            2020          41410
+  20/12/0118      002    Nuestro Tiempo SRL              0900          18450
 
 Totales por fecha                                       02920       00059860
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  28/07/2013      002    Nuestro Tiempo SRL              2020          41410
-  28/07/2013      001    COLPIX                          0900          18450
-  28/07/2013      003    INTRAWAY                        2020          41410
-  28/07/2013      004    Sur Des Tecnologicos            2020          41410
-  28/07/2013      001    COLPIX                          0900          18450
+  20/13/0728      002    Nuestro Tiempo SRL              2020          41410
+  20/13/0728      001    COLPIX                          0900          18450
+  20/13/0728      003    INTRAWAY                        2020          41410
+  20/13/0728      004    Sur Des Tecnologicos            2020          41410
+  20/13/0728      001    COLPIX                          0900          18450
 
 Totales por fecha                                       07860       00161130
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  28/03/2014      003    INTRAWAY                        2020          41410
+  20/14/0328      003    INTRAWAY                        2020          41410
 
 Totales por fecha                                       02020       00041410
 
@@ -252,7 +252,7 @@ Total por General                                                 0001454270
 
 
 
- Fecha: 15/06/30                                                     HOJA : 006
+ Fecha: 15/07/02                                                     HOJA : 006
 
                             Listado de horas aplicadas
 Consultor: 00006                 Nombre: Nombre1
@@ -262,48 +262,48 @@ Consultor: 00006                 Nombre: Nombre1
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2012      001    COLPIX                          2020          41410
-  18/12/2012      002    Nuestro Tiempo SRL              2020          41410
-  18/12/2012      003    INTRAWAY                        2020          41410
+  20/12/1218      001    COLPIX                          2020          41410
+  20/12/1218      002    Nuestro Tiempo SRL              2020          41410
+  20/12/1218      003    INTRAWAY                        2020          41410
 
 Totales por fecha                                       06060       00124230
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  07/06/2013      002    Nuestro Tiempo SRL              2020          41410
-  07/06/2013      003    INTRAWAY                        2020          41410
-  07/06/2013      004    Sur Des Tecnologicos            2020          41410
+  20/13/0607      002    Nuestro Tiempo SRL              2020          41410
+  20/13/0607      003    INTRAWAY                        2020          41410
+  20/13/0607      004    Sur Des Tecnologicos            2020          41410
 
 Totales por fecha                                       06060       00124230
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  25/02/2014      002    Nuestro Tiempo SRL              2020          41410
-  25/02/2014      003    INTRAWAY                        2020          41410
-  25/02/2014      004    Sur Des Tecnologicos            2020          41410
+  20/14/0225      002    Nuestro Tiempo SRL              2020          41410
+  20/14/0225      003    INTRAWAY                        2020          41410
+  20/14/0225      004    Sur Des Tecnologicos            2020          41410
 
 Totales por fecha                                       06060       00124230
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2015      001    COLPIX                          2020          41410
+  20/15/1218      001    COLPIX                          2020          41410
 
 Totales por fecha                                       02020       00041410
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/12/2015      001    COLPIX                          2020          41410
+  20/15/1219      001    COLPIX                          2020          41410
 
 Totales por fecha                                       02020       00041410
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  20/12/2015      001    COLPIX                          2020          41410
+  20/15/1220      001    COLPIX                          2020          41410
 
 Totales por fecha                                       02020       00041410
 
@@ -319,7 +319,7 @@ Total por General                                                 0001951190
 
 
 
- Fecha: 15/06/30                                                     HOJA : 007
+ Fecha: 15/07/02                                                     HOJA : 007
 
                             Listado de horas aplicadas
 Consultor: 00007                 Nombre: Nombre1
@@ -329,24 +329,24 @@ Consultor: 00007                 Nombre: Nombre1
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  03/03/2013      002    Nuestro Tiempo SRL              2020          41410
-  03/03/2013      004    Sur Des Tecnologicos            2020          41410
-  03/03/2013      001    COLPIX                          2020          41410
-  03/03/2013      003    INTRAWAY                        2020          41410
+  20/13/0303      002    Nuestro Tiempo SRL              2020          41410
+  20/13/0303      004    Sur Des Tecnologicos            2020          41410
+  20/13/0303      001    COLPIX                          2020          41410
+  20/13/0303      003    INTRAWAY                        2020          41410
 
 Totales por fecha                                       08080       00165640
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/12/2014      002    Nuestro Tiempo SRL              2020          41410
+  20/14/1219      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  20/12/2015      002    Nuestro Tiempo SRL              2020          41410
+  20/15/1220      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       02020       00041410
 
@@ -362,7 +362,7 @@ Total por General                                                 0002199650
 
 
 
- Fecha: 15/06/30                                                     HOJA : 008
+ Fecha: 15/07/02                                                     HOJA : 008
 
                             Listado de horas aplicadas
 Consultor: 00008                 Nombre: Nombre1
@@ -372,19 +372,19 @@ Consultor: 00008                 Nombre: Nombre1
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  02/04/2012      004    Sur Des Tecnologicos            2020          41410
-  02/04/2012      001    COLPIX                          0900          18450
-  02/04/2012      002    Nuestro Tiempo SRL              2020          41410
+  20/12/0402      004    Sur Des Tecnologicos            2020          41410
+  20/12/0402      001    COLPIX                          0900          18450
+  20/12/0402      002    Nuestro Tiempo SRL              2020          41410
 
 Totales por fecha                                       04940       00101270
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  07/12/2014      001    COLPIX                          0900          18450
-  07/12/2014      003    INTRAWAY                        2020          41410
-  07/12/2014      001    COLPIX                          0900          18450
-  07/12/2014      003    INTRAWAY                        2020          41410
+  20/14/1207      001    COLPIX                          0900          18450
+  20/14/1207      003    INTRAWAY                        2020          41410
+  20/14/1207      001    COLPIX                          0900          18450
+  20/14/1207      003    INTRAWAY                        2020          41410
 
 Totales por fecha                                       05840       00119720
 
@@ -400,7 +400,7 @@ Total por General                                                 0002420640
 
 
 
- Fecha: 15/06/30                                                     HOJA : 009
+ Fecha: 15/07/02                                                     HOJA : 009
 
                             Listado de horas aplicadas
 Consultor: 00009                 Nombre: Nombre2
@@ -410,9 +410,9 @@ Consultor: 00009                 Nombre: Nombre2
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2015      002    Nuestro Tiempo SRL              2020          21806
-  18/12/2015      001    COLPIX                          0900          54270
-  18/12/2015      002    Nuestro Tiempo SRL              2020          21806
+  20/15/1218      002    Nuestro Tiempo SRL              2020          21806
+  20/15/1218      001    COLPIX                          0900          54270
+  20/15/1218      002    Nuestro Tiempo SRL              2020          21806
 
 Totales por fecha                                       04940       00297882
 
@@ -428,7 +428,7 @@ Total por General                                                 0002718522
 
 
 
- Fecha: 15/06/30                                                     HOJA : 010
+ Fecha: 15/07/02                                                     HOJA : 010
 
                             Listado de horas aplicadas
 Consultor: 00012                 Nombre: Nombre3
@@ -438,8 +438,8 @@ Consultor: 00012                 Nombre: Nombre3
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/07/2014      001    COLPIX                          0900          36270
-  19/07/2014      002    Nuestro Tiempo SRL              2020          81406
+  20/14/0719      001    COLPIX                          0900          36270
+  20/14/0719      002    Nuestro Tiempo SRL              2020          81406
 
 Totales por fecha                                       02920       00117676
 
@@ -455,7 +455,7 @@ Total por General                                                 0002836198
 
 
 
- Fecha: 15/06/30                                                     HOJA : 011
+ Fecha: 15/07/02                                                     HOJA : 011
 
                             Listado de horas aplicadas
 Consultor: 00019                 Nombre: Nombre4
@@ -465,17 +465,17 @@ Consultor: 00019                 Nombre: Nombre4
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  02/04/2012      004    Sur Des Tecnologicos            2020          03616
-  02/04/2012      001    COLPIX                          0900          90720
-  02/04/2012      002    Nuestro Tiempo SRL              2020          03616
-  02/04/2012      001    COLPIX                          0900          90720
+  20/12/0402      004    Sur Des Tecnologicos            2020          03616
+  20/12/0402      001    COLPIX                          0900          90720
+  20/12/0402      002    Nuestro Tiempo SRL              2020          03616
+  20/12/0402      001    COLPIX                          0900          90720
 
 Totales por fecha                                       05840       00588672
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2013      003    INTRAWAY                        2020          03616
+  20/13/1218      003    INTRAWAY                        2020          03616
 
 Totales por fecha                                       02020       00203616
 
@@ -491,7 +491,7 @@ Total por General                                                 0003628486
 
 
 
- Fecha: 15/06/30                                                     HOJA : 012
+ Fecha: 15/07/02                                                     HOJA : 012
 
                             Listado de horas aplicadas
 Consultor: 00022                 Nombre: Nombre5
@@ -501,15 +501,15 @@ Consultor: 00022                 Nombre: Nombre5
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2012      001    COLPIX                          0900          90720
-  18/12/2012      002    Nuestro Tiempo SRL              2020          03616
+  20/12/1218      001    COLPIX                          0900          90720
+  20/12/1218      002    Nuestro Tiempo SRL              2020          03616
 
 Totales por fecha                                       02920       00294336
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/11/2014      004    Sur Des Tecnologicos            0900          90720
+  20/14/1119      004    Sur Des Tecnologicos            0900          90720
 
 Totales por fecha                                       00900       00090720
 
@@ -525,7 +525,7 @@ Total por General                                                 0004013542
 
 
 
- Fecha: 15/06/30                                                     HOJA : 013
+ Fecha: 15/07/02                                                     HOJA : 013
 
                             Listado de horas aplicadas
 Consultor: 00029                 Nombre: Nombre6
@@ -535,8 +535,8 @@ Consultor: 00029                 Nombre: Nombre6
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/07/2014      001    COLPIX                          0900          54270
-  19/07/2014      002    Nuestro Tiempo SRL              2020          21806
+  20/14/0719      001    COLPIX                          0900          54270
+  20/14/0719      002    Nuestro Tiempo SRL              2020          21806
 
 Totales por fecha                                       02920       00176076
 
@@ -552,7 +552,7 @@ Total por General                                                 0004189618
 
 
 
- Fecha: 15/06/30                                                     HOJA : 014
+ Fecha: 15/07/02                                                     HOJA : 014
 
                             Listado de horas aplicadas
 Consultor: 00032                 Nombre: Nombre7
@@ -562,21 +562,21 @@ Consultor: 00032                 Nombre: Nombre7
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/07/2012      001    COLPIX                          0900          36270
+  20/12/0719      001    COLPIX                          0900          36270
 
 Totales por fecha                                       00900       00036270
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2013      002    Nuestro Tiempo SRL              2020          81406
+  20/13/1218      002    Nuestro Tiempo SRL              2020          81406
 
 Totales por fecha                                       02020       00081406
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/07/2014      003    INTRAWAY                        0900          36270
+  20/14/0719      003    INTRAWAY                        0900          36270
 
 Totales por fecha                                       00900       00036270
 
@@ -592,7 +592,7 @@ Total por General                                                 0004343564
 
 
 
- Fecha: 15/06/30                                                     HOJA : 015
+ Fecha: 15/07/02                                                     HOJA : 015
 
                             Listado de horas aplicadas
 Consultor: 00039                 Nombre: Nombre8
@@ -602,21 +602,21 @@ Consultor: 00039                 Nombre: Nombre8
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/07/2011      004    Sur Des Tecnologicos            0900          54270
+  20/11/0719      004    Sur Des Tecnologicos            0900          54270
 
 Totales por fecha                                       00900       00054270
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2011      002    Nuestro Tiempo SRL              2020          21806
+  20/11/1218      002    Nuestro Tiempo SRL              2020          21806
 
 Totales por fecha                                       02020       00121806
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/07/2012      001    COLPIX                          0900          54270
+  20/12/0719      001    COLPIX                          0900          54270
 
 Totales por fecha                                       00900       00054270
 
@@ -632,7 +632,7 @@ Total por General                                                 0004573910
 
 
 
- Fecha: 15/06/30                                                     HOJA : 016
+ Fecha: 15/07/02                                                     HOJA : 016
 
                             Listado de horas aplicadas
 Consultor: 00042                 Nombre: Nombre9
@@ -642,22 +642,22 @@ Consultor: 00042                 Nombre: Nombre9
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/11/2011      002    Nuestro Tiempo SRL              2020          21806
-  19/11/2011      001    COLPIX                          0900          54270
+  20/11/1119      002    Nuestro Tiempo SRL              2020          21806
+  20/11/1119      001    COLPIX                          0900          54270
 
 Totales por fecha                                       02920       00176076
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  18/12/2012      004    Sur Des Tecnologicos            2020          21806
+  20/12/1218      004    Sur Des Tecnologicos            2020          21806
 
 Totales por fecha                                       02020       00121806
 
    Fecha        Empresa          Razon Social            Horas        Importe
 --------------------------------------------------------------------------------
 
-  19/11/2015      003    INTRAWAY                        0900          54270
+  20/15/1119      003    INTRAWAY                        0900          54270
 
 Totales por fecha                                       00900       00054270
 

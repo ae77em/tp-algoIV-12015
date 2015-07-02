@@ -145,7 +145,6 @@
        01  WS-MIN-CUIT     PIC 9(11).
        01  WS-MAX-CUIT     PIC 9(11).
 
-      * parametros subrutina
        01 WS-COD-OPER                 PIC X.
        01 WS-CUIT                     PIC 9(11).
        01 WS-RAZON                    PIC X(25).
