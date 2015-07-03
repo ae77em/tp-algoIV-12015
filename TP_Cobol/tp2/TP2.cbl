@@ -168,7 +168,7 @@
        01 REP-ENC-FECHA.
          03 REF-FECHA  PIC X(15) VALUE 'Fecha'.
          03 REF-CONS  PIC X(25) VALUE 'Consultor'.
-         03 REF-NOMB  PIC X(20) VALUE 'Nombre   '.
+         03 REF-NOMB  PIC X(22) VALUE 'Nombre   '.
          03 REF-HORAS  PIC X(10) VALUE 'Horas   '.
          03 REF-IMPOR  PIC X(10) VALUE 'Importe  '.
 
@@ -182,18 +182,20 @@
            05 RLF-AUX    PIC X(5) VALUE SPACES.
          03 RLF-CONS  PIC X(25).
          03 RLF-NOMB  PIC X(20).
-         03 RLF-HORAS  PIC 9(10).
+         03 RLF-HORAS  PIC 9(8).
+         03 RLF-AUX    PIC X(2) VALUE SPACES.
          03 RLSF-IMPOR  PIC 9(10).
 
        01 REP-TOT-FECHA.
          03 RTF-FECHA  PIC X(20) VALUE 'Totales por fecha:'.
          03 RTF-AUX  PIC X(40) VALUE SPACES.
-         03 RTF-TOTAL-HORAS  PIC 9(10).
+         03 RTF-TOTAL-HORAS  PIC 9(8).
+         03 RTF-AUX  PIC X(2) VALUE SPACES.
          03 RTF-TOTAL-IMPOR  PIC 9(10).
 
        01 REP-TOT-GRAL.
          03 RTG-FECHA  PIC X(20) VALUE 'Total general:'.
-         03 RTG-AUX  PIC X(50) VALUE SPACES.
+         03 RTG-AUX  PIC X(48) VALUE SPACES.
          03 RTG-TOTAL-GRAL  PIC 9(10)V99.
 
        01 LIN-TOT-FECHA.
