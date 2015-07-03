@@ -194,7 +194,7 @@
          03 RTF-AUX  PIC X(40) VALUE SPACES.
          03 RTF-TOTAL-HORAS  PIC 9(8).
          03 RTF-AUX  PIC X(2) VALUE SPACES.
-         03 RTF-TOTAL-IMPOR  PIC 9(10).
+         03 RTF-TOTAL-IMPOR  PIC 9(8)V99.
 
        01 REP-TOT-GRAL.
          03 RTG-FECHA  PIC X(20) VALUE 'Total general:'.
@@ -375,7 +375,9 @@
            DISPLAY REP-TOT-FECHA.
            ADD 2 TO NRO-LINEA.
            MOVE 0 TO IMPORTE.
+           MOVE 0 TO IMPORTE-FECHA.
            MOVE 0 TO RTF-TOTAL-HORAS.
+           MOVE 0 TO RTF-TOTAL-IMPOR.
 
            MOVE 'F' TO WS-SE-IMPRIMIO-FECHA.
            MOVE WS-REBURNER-FECHA TO RLF-FECHA.
