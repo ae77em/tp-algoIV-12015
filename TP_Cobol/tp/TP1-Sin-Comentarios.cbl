@@ -887,6 +887,7 @@
 
        VERIFICAR-ANIO-EST.
          PERFORM OBTENER-ANIO-ACTUAL.
+
          IF (WS-ANIO-AAAA = WS-ANIO-ACTUAL)
            MOVE 'OK' TO WS-ANIO-TEMP
            SET WS-OFFSET-ANIO-EST TO 5
@@ -909,7 +910,6 @@
       * se van sumando los valores obtenidos en el correspondiente mes
       * y año en la tabla que se muestra por pantalla.
        CARGAR-DATOS-EN-MATRIZ-EST.
-
       *  Se hacen los siguientes calculos, en el siguiente orden, dentro
       *  de cada sentecia if, por cada mes del año:
       *   > recalculo el valor mensual
@@ -1030,13 +1030,13 @@
       *  si corresponde a la empresa que estoy filtrando
          IF (REG-TIMES-EMPRESA IS EQUALS TAB-EMP-COD(IND-TAB-EMP))
       *    identifico el año a cargar
-           MOVE REG-TIMES-FECHA (5:4) TO WS-ANIO-AAAA
+           MOVE REG-TIMES-FECHA (1:4) TO WS-ANIO-AAAA
            PERFORM VERIFICAR-ANIO-EST
       *    si el año esta dentro del rango que tengo que mostrar
       *    (los últimos 5), calculo la cantidad
            IF WS-ANIO-TEMP-OK
       *      identifico el mes a cargar
-             MOVE REG-TIMES-FECHA (3:2) TO WS-MES-MM
+             MOVE REG-TIMES-FECHA (5:2) TO WS-MES-MM
       *      lo cargo en la matriz
              PERFORM CARGAR-DATOS-EN-MATRIZ-EST.
 
