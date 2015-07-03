@@ -154,8 +154,56 @@
        01 WS-CORTE-FECHA              PIC X(8).
        01 WS-CORTE-RAZON-SOCIAL       PIC X(25).
 
+       01 FECHA.
+         03 AAAA   PIC 9(4).
+         03 MM     PIC 9(2).
+         03 DD     PIC 9(2).
+
+       01 PAGINA   PIC 999.
+
+       01 REP-ENC-GRAL.
+         03 RE-FECHA.
+            05 FECHA-DD     PIC 99.
+            05 BARRA1       PIC X VALUE '/'.
+            05 FECHA-MM     PIC 99.
+            05 BARRA2       PIC X VALUE '/'.
+            05 FECHA-AAAA   PIC 9999.
+         03 RE-ESPACIOS    PIC X(50) VALUE SPACES.
+         03 RE-PAGINA      PIC 999.
+
+       01 REP-ENC-FECHA.
+         03 REF-FECHA  PIC X(15) VALUE 'Fecha'.
+         03 REF-CONS  PIC X(25) VALUE 'Consultor'.
+         03 REF-NOMB  PIC X(20) VALUE 'Nombre   '.
+         03 REF-HORAS  PIC X(10) VALUE 'Horas   '.
+         03 REF-IMPOR  PIC X(10) VALUE 'Importe  '.
+
+       01 REP-LINEA-FECHA.
+         03 RLF-FECHA.
+           05 RLF-DD     PIC 99.
+           05 RLF-BARRA1 PIC X VALUE '/'.
+           05 RLF-MM     PIC 99.
+           05 RLF-BARRA2 PIC X VALUE '/'.
+           05 RLF-AAAA   PIC 9999.
+           05 RLF-AUX    PIC X(5) VALUE SPACES.
+         03 RLF-CONS  PIC X(25).
+         03 RLF-NOMB  PIC X(20).
+         03 RLF-HORAS  PIC 9(10).
+         03 RLSF-IMPOR  PIC 9(10).
+
+       01 REP-TOT-FECHA.
+         03 RTF-FECHA  PIC X(20) VALUE 'Totales por fecha:'.
+         03 RTF-AUX  PIC X(50) VALUE SPACES.
+         03 RTF-TOTAL  PIC 9(10).
+
+       01 LINEA-DIVISORIA-CONTINUA.
+         03 FILLER PIC X(80) VALUE ALL "_".
+
        PROCEDURE DIVISION.
        TP2.
+
+         PERFORM INICIO.
+
           SORT ARCH-TRABAJOS-X-EMPRESA ON ASCENDING KEY
                          REG-T-X-E-RAZON,
                          REG-T-X-E-CUIT,
@@ -167,19 +215,34 @@
           DISPLAY "Fin de la ejecucion total..".
           STOP RUN.
 
+       INICIO.
+          MOVE FUNCTION CURRENT-DATE TO FECHA.
+
+          DISPLAY 'FECHA: ' FECHA.
+
+          MOVE 0 TO PAGINA.
+
+          MOVE DD TO FECHA-DD.
+          MOVE MM TO FECHA-MM.
+          MOVE AAAA TO FECHA-AAAA.
+
+          PERFORM IMPRIMIR-ENC-PAGINA.
+
+
+       IMPRIMIR-ENC-PAGINA.
+          ADD 1 TO PAGINA.
+          MOVE PAGINA TO RE-PAGINA.
+          DISPLAY REP-ENC-GRAL.
+          DISPLAY '            Horas Aplicadas por Empresa'.
+          DISPLAY ' '.
+
+
        CARGAR-ARCHIVO-SORT.
          MOVE 0 TO ACUM.
          PERFORM ABRIR-ARCHIVOS.
          PERFORM LEER-Y-SETEAR-PARAMETROS.
          PERFORM POSICIONAR-MAESTRO-TIMES.
          PERFORM LEER-MAESTRO-TIMES.
-
-         DISPLAY "INICIANDO INPUT PROCEDURE,    REGISTROS CARGADOS EN
-                  EL ARCHIVO PREVIO AL SORT".
-         DISPLAY "PARAMETROS MIN: " WS-MIN-CUIT
-              "  MAX:" WS-MAX-CUIT
-              "  CLAVE para posicionar indice maestro: " REG-KEY-CUIT.
-
          PERFORM CARGAR-ARCHIVO
          UNTIL REG-KEY-CUIT IS GREATER THAN WS-MAX-CUIT OR TIMES-EOF.
 
@@ -196,7 +259,7 @@
          CALL 'EMPRESAS'
            USING WS-COD-OPER, WS-CUIT, WS-RAZON, WS-COD-ERROR.
 
-         DISPLAY 'RES. DE LLAMADA A SUBRUTINA D APERTURA: 'WS-COD-ERROR.
+      *   DISPLAY 'RES. DE LLAMADA A SUBRUTINA D APERTURA: 'WS-COD-ERROR.
 
        LEER-Y-SETEAR-PARAMETROS.
          READ ARCH-PARAMETROS.
@@ -221,7 +284,7 @@
          MOVE REG-KEY-NUM TO REG-T-X-E-COD-CONS.
          MOVE REG-TIMES-HORAS TO REG-T-X-E-HORAS.
 
-         DISPLAY ACUM ")" REG-T-X-E.
+      *   DISPLAY ACUM ")" REG-T-X-E.
 
          RELEASE REG-T-X-E.
 
@@ -233,7 +296,7 @@
          CALL 'EMPRESAS'
                    USING WS-COD-OPER, WS-CUIT, WS-RAZON, WS-COD-ERROR.
 
-         DISPLAY 'RES. DE LLAMADA A SUBRUTINA D LECTURA: 'WS-COD-ERROR.
+      *   DISPLAY 'RES. DE LLAMADA A SUBRUTINA D LECTURA: 'WS-COD-ERROR.
 
 
        CERRAR-ARCHIVOS.
@@ -245,16 +308,12 @@
          CALL 'EMPRESAS'
                  USING WS-COD-OPER, WS-CUIT, WS-RAZON, WS-COD-ERROR.
 
-         DISPLAY 'RES. DE LLAMADA A SUBRUTINA D CIERRE: 'WS-COD-ERROR.
+      *   DISPLAY 'RES. DE LLAMADA A SUBRUTINA D CIERRE: 'WS-COD-ERROR.
 
        PROCESAR-ARCHIVO-SORT.
           MOVE 0 TO WS-CANT-REG.
 
           PERFORM LEER-ARCH-TRABAJOS-X-EMPRESA.
-
-          DISPLAY "\nREGISTROS CONTENIDOS EN EL ARCHIVO DEVUELTO POR
-           LA FUNCION SORT, HACER CORTE DE CONTROL SOBRE ESTA DATA \n".
-
           PERFORM PROCESAR-LISTADO UNTIL T-X-E-EOF.
 
           DISPLAY "fin de OUTPUT PROCEDURE".
@@ -266,7 +325,8 @@
        PROCESAR-LISTADO.
           PERFORM ASIGNAR-CORTE-RAZON-SOCIAL.
 
-          DISPLAY  "RAZON:  " REG-T-X-E-RAZON  REG-T-X-E-CUIT " ".
+          DISPLAY "Empresa: " REG-T-X-E-RAZON .
+          DISPLAY "CUIT: " REG-T-X-E-CUIT.
 
           PERFORM PROCESAR-TRABAJOS-X-RAZON UNTIL
                       WS-CORTE-RAZON-SOCIAL NOT EQUAL REG-T-X-E-RAZON
@@ -277,22 +337,32 @@
           MOVE REG-T-X-E-RAZON TO WS-CORTE-RAZON-SOCIAL.
 
        PROCESAR-TRABAJOS-X-RAZON.
-             PERFORM ASIGNAR-CORTE-FECHA.
+           PERFORM ASIGNAR-CORTE-FECHA.
 
-          DISPLAY  "FECHA:  " REG-T-X-E-FECHA.
+           DISPLAY ' '.
+           DISPLAY REP-ENC-FECHA.
+           DISPLAY LINEA-DIVISORIA-CONTINUA.
+           DISPLAY ' '.
 
-             PERFORM PROCESAR-TRABAJOS-X-FECHA UNTIL
-                    WS-CORTE-RAZON-SOCIAL NOT EQUAL REG-T-X-E-RAZON
-                    OR WS-CORTE-FECHA NOT EQUAL REG-T-X-E-FECHA
-                    OR T-X-E-EOF.
+           PERFORM PROCESAR-TRABAJOS-X-FECHA UNTIL
+               WS-CORTE-RAZON-SOCIAL NOT EQUAL REG-T-X-E-RAZON
+               OR WS-CORTE-FECHA NOT EQUAL REG-T-X-E-FECHA
+               OR T-X-E-EOF.
+
+           DISPLAY ' '.
+           DISPLAY REP-TOT-FECHA.
 
        ASIGNAR-CORTE-FECHA.
           MOVE REG-T-X-E-FECHA TO WS-CORTE-FECHA.
 
        PROCESAR-TRABAJOS-X-FECHA.
-           DISPLAY   "                  "
-                   REG-T-X-E-COD-CONS
-                   " "
-                   REG-T-X-E-HORAS.
 
-          PERFORM LEER-ARCH-TRABAJOS-X-EMPRESA.
+         MOVE REG-T-X-E-FECHA(1:4) TO RLF-AAAA.
+         MOVE REG-T-X-E-FECHA(4:2) TO RLF-MM.
+         MOVE REG-T-X-E-FECHA(6:2) TO RLF-DD.
+         MOVE REG-T-X-E-COD-CONS TO RLF-CONS.
+         MOVE REG-T-X-E-HORAS TO RLF-HORAS.
+
+         DISPLAY REP-LINEA-FECHA.
+
+         PERFORM LEER-ARCH-TRABAJOS-X-EMPRESA.
