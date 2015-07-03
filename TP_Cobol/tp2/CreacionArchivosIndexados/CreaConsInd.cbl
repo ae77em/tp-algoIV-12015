@@ -48,7 +48,7 @@
        WORKING-STORAGE SECTION.
 
        01 WS-PADRON   PIC X.
-       01 WS-ACUM-REG PIC 9.
+       01 WS-ACUM-REG PIC 99 VALUE 00.
 
        77 FS-ARCH-CONS-SEQ    PIC XX.
            88 SEQ-OK        VALUE '00'.
