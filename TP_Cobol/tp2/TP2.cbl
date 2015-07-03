@@ -161,7 +161,8 @@
             05 FECHA-MM     PIC 99.
             05 BARRA2       PIC X VALUE '/'.
             05 FECHA-AAAA   PIC 9999.
-         03 RE-ESPACIOS    PIC X(50) VALUE SPACES.
+         03 RE-ESPACIOS    PIC X(62) VALUE SPACES.
+         03 RE-NRO-PAGINA  PIC X(5) VALUE 'Nro: '.
          03 RE-PAGINA      PIC 999.
 
        01 REP-ENC-FECHA.
