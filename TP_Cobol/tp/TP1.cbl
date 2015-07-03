@@ -708,58 +708,6 @@
           DISPLAY ENCABE-CONSULTOR-POR-FECHA.
           DISPLAY LINEA-DIVISORIA-PUNTEADA.
 
-       CARGAR-TABLA-CATEGORIAS.
-           READ ARCH-CATEGORIAS
-               AT END MOVE '10' TO FS-CAT.
-
-           MOVE 1 TO IND-TAB-CAT.
-
-           PERFORM CARGA-CATEGORIA-EN-TABLA
-               UNTIL CAT-EOF OR IND-TAB-CAT NOT LESS THAN 50.
-
-       CARGA-CATEGORIA-EN-TABLA.
-           MOVE REG-CAT TO TAB-CAT(IND-TAB-CAT).
-
-           ADD 1 TO IND-TAB-CAT.
-
-           READ ARCH-CATEGORIAS
-               AT END MOVE '10' TO FS-CAT.
-
-       CARGAR-TABLA-EMPRESAS.
-         READ ARCH-EMPRESAS
-           AT END MOVE '10' TO FS-EMP.
-
-         MOVE 1 TO IND-TAB-EMP.
-
-         PERFORM CARGAR-EMPRESA-EN-TABLA
-           UNTIL EMP-EOF
-           OR IND-TAB-EMP NOT LESS THAN 999.
-
-      *  guardo la cantidd de empresas
-         MOVE IND-TAB-EMP TO WS-CANT-EMP.
-
-       CARGAR-EMPRESA-EN-TABLA.
-           MOVE REG-EMP-TAB TO TAB-EMP(IND-TAB-EMP).
-
-           ADD 1 TO IND-TAB-EMP.
-
-           READ ARCH-EMPRESAS AT END MOVE '10' TO FS-EMP.
-
-       ORDERNAR-EMPRESAS-X-RAZ-SOC.
-         MOVE 1 TO WS-I.
-           PERFORM UNTIL WS-I = WS-CANT-EMP
-             MOVE WS-I TO WS-J
-             PERFORM UNTIL WS-J = WS-CANT-EMP
-               IF (TAB-EMP-RAZON(WS-I) > TAB-EMP-RAZON(WS-J))
-                 MOVE TAB-EMP(WS-I) TO REG-TAB-EMP-TEMP
-                 MOVE TAB-EMP(WS-J) TO TAB-EMP(WS-I)
-                 MOVE REG-TAB-EMP-TEMP TO TAB-EMP(WS-J)
-               END-IF
-               ADD 1 TO WS-J GIVING WS-J
-             END-PERFORM
-             ADD 1 TO WS-I GIVING WS-I
-           END-PERFORM.
-           MOVE 1 TO WS-I.
 
        INICIALIZACION-VARIABLES.
            MOVE 90 TO WS-ACUM-LINEAS.
@@ -822,6 +770,60 @@
            ELSE
               DISPLAY 'NO PUDO CREARSE ARCHIVO MAE-TIMES ' FS-TIMES
               PERFORM FIN.
+
+       CARGAR-TABLA-CATEGORIAS.
+           READ ARCH-CATEGORIAS
+               AT END MOVE '10' TO FS-CAT.
+
+           MOVE 1 TO IND-TAB-CAT.
+
+           PERFORM CARGA-CATEGORIA-EN-TABLA
+               UNTIL CAT-EOF OR IND-TAB-CAT NOT LESS THAN 50.
+
+       CARGA-CATEGORIA-EN-TABLA.
+           MOVE REG-CAT TO TAB-CAT(IND-TAB-CAT).
+
+           ADD 1 TO IND-TAB-CAT.
+
+           READ ARCH-CATEGORIAS
+               AT END MOVE '10' TO FS-CAT.
+
+       CARGAR-TABLA-EMPRESAS.
+         READ ARCH-EMPRESAS
+           AT END MOVE '10' TO FS-EMP.
+
+         MOVE 1 TO IND-TAB-EMP.
+
+         PERFORM CARGAR-EMPRESA-EN-TABLA
+           UNTIL EMP-EOF
+           OR IND-TAB-EMP NOT LESS THAN 999.
+
+      *  guardo la cantidd de empresas
+         MOVE IND-TAB-EMP TO WS-CANT-EMP.
+
+       CARGAR-EMPRESA-EN-TABLA.
+           MOVE REG-EMP-TAB TO TAB-EMP(IND-TAB-EMP).
+
+           ADD 1 TO IND-TAB-EMP.
+
+           READ ARCH-EMPRESAS AT END MOVE '10' TO FS-EMP.
+
+       ORDERNAR-EMPRESAS-X-RAZ-SOC.
+         MOVE 1 TO WS-I.
+           PERFORM UNTIL WS-I = WS-CANT-EMP
+             MOVE WS-I TO WS-J
+             PERFORM UNTIL WS-J = WS-CANT-EMP
+               IF (TAB-EMP-RAZON(WS-I) > TAB-EMP-RAZON(WS-J))
+                 MOVE TAB-EMP(WS-I) TO REG-TAB-EMP-TEMP
+                 MOVE TAB-EMP(WS-J) TO TAB-EMP(WS-I)
+                 MOVE REG-TAB-EMP-TEMP TO TAB-EMP(WS-J)
+               END-IF
+               ADD 1 TO WS-J GIVING WS-J
+             END-PERFORM
+             ADD 1 TO WS-I GIVING WS-I
+           END-PERFORM.
+           MOVE 1 TO WS-I.
+
 
        CARGAR-ANIOS-EST.
       *  obtengo el año actual
